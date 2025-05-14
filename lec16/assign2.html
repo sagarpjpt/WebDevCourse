@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Welcome to CodeHelp</h1>
+    <h2>Contact Us Form</h2>
+    <form action="https://github.com/sagarpjpt">
+        <label for="name">Name : </label>
+        <input type="text" id="name" placeholder="Enter Your Name">
+        <br>
+        <label for="email">Email : </label>
+        <input type="text" id="email" placeholder="Enter Your Email">
+        <br>
+        <label for="number">Contact Number : </label>
+        <input type="number" id="number">
+        <br>
+        <label for="gender">Gender : </label>
+        <select name="gender" id="gender">
+            <option value="male">male</option>
+            <option value="female">female</option>
+            <option value="other">other</option>
+        </select>
+        <br>
+        <label for="dob">Date Of Birth : </label>
+        <!-- can set min and max value for certain age group eg: 18 to 25 -->
+        <input type="date" id="dob" name="dob" min="2000-01-01" max="2006-12-31">
+        <br>
+        <label for="rating">Rating : </label>
+        <input type="radio" name="rating" id="1">
+        <label for="1">1</label>
+        <input type="radio" name="rating" id="2">
+        <label for="2">2</label>
+        <input type="radio" name="rating" id="3">
+        <label for="3">3</label>
+        <input type="radio" name="rating" id="4">
+        <label for="4">4</label>
+        <input type="radio" name="rating" id="5">
+        <label for="5">5</label>
+        <br>
+        <label for="message">Enter Your Message : </label>
+        <br>
+        <textarea name="message" id="message" rows="4" cols="50" placeholder="Enter Your Message"></textarea>
+        <br>
+        <input type="submit" name="submit" value="Send">
+        <input type="reset" name="reset" value="Clear">
+    </form>
+
+</body>
+</html>

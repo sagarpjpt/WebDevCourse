@@ -1,0 +1,41 @@
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header, .footer {
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.sidebar {
+  background-color: #ffcdd2;
+  padding: 10px;
+  box-sizing: border-box;
+  min-width: 100px;
+}
+
+.main {
+  background-color: #e3f2fd;
+  padding: 10px;
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+
+.resizer {
+  width: 5px;
+  background: #888;
+  cursor: col-resize;
+  position: relative;
+  z-index: 1;
+}

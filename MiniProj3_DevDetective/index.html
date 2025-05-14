@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Detective</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- wrapper div -->
+    <div id="wrapper">
+
+        <!-- heading and dark mode toggle container -->
+        <div class="heading-container">
+
+            <h2>DevDetective</h2>
+            <p id="toggle-btn">
+                <span data-toggleBtnText>Dark</span>
+                <img src="./images/moon-icon.svg" alt="" 
+                data-toggleBtnIcon
+                width="1rem">
+            </p>
+
+        </div>
+
+        <!-- form container -->
+        <form action="" data-searchForm class="form-container">
+
+            <img src="./images/search-icon.svg" alt="">
+            <input type="text" 
+            placeholder="Enter a Github username... Eg: sagarpjpt"
+            data-searchInput>
+            <button class="btn" type="submit">
+                Search
+            </button>
+
+        </form>
+
+        <!-- profile container -->
+        <div class="profile-container">
+
+            <img alt="github profile img" data-gitProfileImg
+            width="150" height="150" class="profile-pic">
+            
+            <!-- user desc container -->
+            <div class="user-desc-container">
+
+                <div class="git-name-container">
+
+                    <h3 data-gitName></h3>
+                    <p data-joinDate></p>
+
+                </div>
+
+                <a href="" data-gitUserName></a>
+
+                <p data-gitBio></p>
+
+                <!-- repo, follow & following container -->
+                <div class="repo-follow-container">
+
+                    <p>
+                        Repos
+                        <span data-repos></span>
+                    </p>
+
+                    <p>
+                        Followers
+                        <span data-followers></span>
+                    </p>
+
+                    <p>
+                        Following
+                        <span data-following></span>
+                    </p>
+
+                </div>
+
+                <!-- links and location grid container-->
+                <div class="grid-container">
+
+                    <div>
+                        <img src="./images/location-icon.svg" alt="loacation img">
+                        <p data-location></p>
+                    </div>
+
+                    <div>
+                        <img src="./images/website-icon.svg" alt="website link img">
+                        <a href="#" data-website></a>
+                    </div>
+
+                    <div>
+                        <img src="./images/twitter-icon.svg" alt="twitterr img">
+                        <a href="#" data-twitterId></a>
+                    </div>
+
+                    <div>
+                        <img src="./images/company-icon.svg" alt="company img">
+                        <p data-company></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="./app.js"></script>
+
+</body>
+</html>

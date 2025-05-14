@@ -1,0 +1,32 @@
+.container {
+    height: 850px;
+    background-color: yellow;
+    border: 1px solid red;
+    
+    display: grid;
+    gap: 10px;
+
+    grid-auto-rows: minmax(100px, auto); 
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.box {
+    border: 1px solid green;
+    background-color: aqua;
+}
+
+/* #header {
+    grid-area: hd;
+}
+
+#sidebar {
+    grid-area: side;
+}
+
+#content {
+    grid-area: main;
+}
+
+#footer {
+    grid-area: ft;
+} */

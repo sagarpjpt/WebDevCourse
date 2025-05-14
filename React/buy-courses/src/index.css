@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:wght@300;400;500;600&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-poppins: Poppins, sans-serif;
+    --color-navbarBg: #22223b;
+    --color-mainBg: rgb(74 78 105);
+    --color-btnBg: rgba(0, 0, 0, 0.4);
+    --color-btnclkBg: rgba(0, 0, 0, 0.6);
+}

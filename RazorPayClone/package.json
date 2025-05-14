@@ -1,0 +1,18 @@
+{
+  "name": "razorpay_clone",
+  "version": "1.0.0",
+  "description": "clone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "vite"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.0.17",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.17",
+    "vite": "^6.2.3"
+  }
+}

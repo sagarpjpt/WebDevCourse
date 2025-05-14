@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:wght@300;400;500;600&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 3rem;
+    margin: 6vh;
+    border: 7px dashed rgba(1, 17, 160, 0.8);
+    padding: 1vh 5vw;
+    border-radius: 1rem;
+    user-select: none;
+    text-align: center;
+}
+
+.cards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.card {
+    width: 400px;
+    height: max-content;
+    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s;
+    gap: 1.5rem;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.image {
+    width: 380px;
+    aspect-ratio: 1/1;
+    border-radius: 0.8rem;
+}
+
+.tour-price {
+    color: #1faa59;
+    font-size: 1.3rem;
+}
+
+.tour-name {
+    font-size: 1.5rem;
+}
+
+.read-more {
+    color: #12b0e8;
+    text-transform: capitalize;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-red {
+    padding: 10px 80px;
+    border: 1px solid #b4161b;
+    cursor: pointer;
+    border-radius: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #b4161b21;
+}
+
+.btn-red:hover {
+    background-color: red;
+    color: white;
+    transition: all 0.5s;
+}
+
+.refresh {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.btn-white {    
+    all: unset;
+    padding: 13px 60px;
+    cursor: pointer;
+    background-color: rgb(214, 84, 84);
+    color: white;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+}
+
+.btn-white:hover {
+    scale: 1.01;
+    border: 1px solid rgb(214, 84, 84);
+    background-color: white;
+    color: rgb(214, 84, 84);
+    font-weight: bold;
+    transition: all 0.2s;
+}

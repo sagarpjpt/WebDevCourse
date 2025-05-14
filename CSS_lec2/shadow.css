@@ -1,0 +1,29 @@
+h1 {
+    text-shadow: 3px 3px red;
+    text-shadow: -3px -3px blue;
+}
+
+p {
+    font-size: 48px;
+    font-weight: bold;
+    color: white; /* Main text color */
+    text-shadow: 
+        -2px -2px 5px black,  
+         2px -2px 5px black,
+        -2px  2px 5px black,
+         2px  2px 5px black; /* Spread effect using blur */
+}
+
+.box {
+    background-color: aqua; 
+    width: 200px;
+    height: 200px;
+    box-shadow: 10px 10px 15px green, -15px -15px 15px red;
+}
+
+.box2 {
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    box-shadow: 10px 10px 15px 15px yellow;
+}

@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* border: 1px solid yellow; */
+    box-sizing: border-box;
+    font-family: var(--mullish);
+}
+
+:root {
+        --mullish:"Mulish", "sans-serif";
+        --deepBlue: #02042a;
+        --lightBlue: #2b84ea;
+        --lightBlue300: #4b94ed;
+        --lightBlue500: #0b72e7;
+        --greenLight: #61cea6;
+        --grayText: #818597;
+        --lightGray: #e2e2e2;
+        --grayBlue: #344a6c;
+        --deepBlueHead: #162f56;
+        --gray2: #525a76;
+}
+
+nav {
+    background-color: var(--deepBlue);
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.nav-wrapper {
+    width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: center;
+}
+
+.logo-container img {
+    width: 7rem;
+}
+
+ul {
+    display: flex;
+    gap: 1.2rem;
+    color: white;
+}
+
+li {
+    /* border: 1px solid yellow; */
+    position: relative;
+    list-style: none;
+    cursor: pointer;
+    padding: 1.8rem 0;
+    z-index: 1;
+    
+}
+
+li div {
+    position: absolute;
+    background-color: var(--lightBlue);
+    height: 0.3rem;
+    width: 100%;
+    bottom: 0;  
+    opacity: 0;  
+    transition: all 0.2s;
+}
+
+li:hover div {
+    opacity: 1;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.login {
+    background: transparent;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.1rem;
+    border-color: var(--lightBlue);
+}
+
+.signup {
+    padding: 0.4rem 0.8rem;
+    border-color: var(--lightBlue);
+    color: var(--lightBlue300);
+    transition: all 0.2s;
+    border-radius: 0.1rem;
+}
+
+.signup:hover {
+    color: var(--lightBlue500);
+}
+
+button{
+    cursor: pointer;
+}
+

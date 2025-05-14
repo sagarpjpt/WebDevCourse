@@ -1,0 +1,60 @@
+.container {
+    height: 215px;
+    background-color: yellow;
+    border: 2px solid red;
+}
+
+.box {
+    width: 212px;
+    height: 212px;
+    border: 2px solid green;
+    background-color: aqua;
+/* animating the box */
+    
+    animation-name: shivam;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-delay: 1s;
+    /* animation-direction: normal;
+    animation-direction: reverse;
+    animation-direction: alternate; */
+    /* animation-direction: normal; */
+    animation-fill-mode: forwards;
+    animation-fill-mode: backwards;
+
+}
+
+@keyframes shivam {
+    from {
+        width: 212px;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/* percentage of animation done as breakpoint 
+@keyframes shivam {
+    0% {
+        width: 212px;
+        background-color: orange;
+    }
+
+    /* 30% {
+        width: 35%;
+        background-color: aquamarine;
+    } 
+
+    50% {
+        width: 50%;
+        background-color: white;
+    }
+
+    100% {
+        width: 100%;
+        background-color: green;
+    }
+}
+    */

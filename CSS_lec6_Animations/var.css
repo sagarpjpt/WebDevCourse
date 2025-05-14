@@ -1,0 +1,25 @@
+/* :root {
+/* Global var -- accessible everywhere 
+    --dark_red:#98182c;
+} */
+/* OR */
+* {
+/* global var */
+    --dark_red:#98182c;
+}
+
+.container {
+    background-color: var(--dark_red);
+    border: 1px solid black;
+    height: 500px;
+    width: 700px;
+}
+
+.box {
+    border: 2px solid black;
+    background-color: aqua;
+    font-size: 3rem;
+/* local var */
+    --dark_red:#98182c;
+    color: var(--dark_red);
+}

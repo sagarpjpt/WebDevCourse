@@ -1,0 +1,60 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    color: white;
+    font-size: 1.2rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 600;
+}
+
+.container {
+    position: relative;
+    margin: 0 auto;
+    margin-top: 5rem;
+    width: 50%;
+    height: 50%;
+    background-color: red;
+    border: 5px solid brown;
+}
+
+.container .bg-img {
+    height: 50vh;
+    background-image: url('https://cdn.pixabay.com/photo/2015/04/23/22/00/new-year-background-736885_1280.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.text {
+    position: absolute;
+    /* background-color: green; */
+    padding: 0.5rem;
+    text-shadow: 1px 1px 5px grey, -1px -1px 5px grey;
+    text-align: center;
+}
+
+#topright {
+    top: 0;
+    right: 0;
+}
+
+#bottomright {
+    margin-bottom: 0.2rem;
+    bottom: 0;
+    right: 0;
+}
+
+#topleft {
+    top: 0;
+}
+
+#bottomleft {
+    bottom: 0;
+    margin-bottom: 0.2rem;
+}
+
+#center {
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}

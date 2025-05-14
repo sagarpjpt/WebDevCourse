@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, tr, th, td{
+            border: 2px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- steps to follow first count the numbers of row and cols
+        then make table as each cell of equal size and make table
+        named cells like col1 col2 col3 ..... etc
+        then accoring to need span the particular cell along row or col
+        delete cells who are in way of spanned cell as we dont need them
+        then after making desired structure fill the table data -->
+    <table>
+        <tr>
+            <th colspan="6">Time Table</th>
+        </tr>
+        <tr>
+            <th rowspan="6">Hours</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+        </tr>
+        <tr>
+            <td>col2</td>
+            <td>col3</td>
+            <td>col4</td>
+            <td>col5</td>
+            <td>col6</td>
+        </tr>
+        <tr>
+            <td>col2</td>
+            <td>col3</td>
+            <td>col4</td>
+            <td>col5</td>
+            <td>col6</td>
+        </tr>
+        <tr>
+            <th colspan="5">Lunch</th>
+        
+        </tr>
+        <tr>
+          
+            <td>col2</td>
+            <td>col3</td>
+            <td>col4</td>
+            <td>col5</td>
+            <td rowspan="2">Project</td>
+        </tr>
+        <tr>
+           
+            <td>col2</td>
+            <td>col3</td>
+            <td>col4</td>
+            <td>col5</td>
+        </tr>
+    </table>
+
+</body>
+</html>

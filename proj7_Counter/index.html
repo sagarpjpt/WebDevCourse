@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <!-- tailwind CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    
+    <!-- wrapper div -->
+    <div class="w-[100vw] h-[100vh] flex flex-col justify-center items-center bg-[#344151] gap-10 overflow-hidden">
+
+        <div class="text-[#0398d4] font-medium text-[20px]">Increment And Decrement</div>
+
+        <!-- buttons and counter value container -->
+        <div class="flex bg-white text-[25px] text-[#344151] rounded-sm gap-12 p-3 px-5">
+
+            <button class="border-r-2 border-[#bfbfbf] pr-5 cursor-pointer" onclick="dec()">
+                <i class="fa-solid fa-minus"></i>
+            </button>
+
+            <div class="font-bold" id="counter">
+                0
+            </div>
+
+            <button class="border-l-2 border-[#bfbfbf] pl-5 cursor-pointer" onclick="inc()">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+        <!-- start stop and reset button div-->
+        <div class="flex text-[25px] text-[#344151] gap-12">
+
+            <!-- start button -->
+            <button class="bg-white p-2 px-5 rounded-md cursor-pointer hover:bg-[#0398d4] hover:text-white transition-all 
+            duration-200 hover:shadow-sm hover:scale-[1.05] hover:shadow-white" onclick="startCounter()" id="startButton">
+                Start
+            </button>
+
+            <!-- stop button -->
+            <button class="bg-white p-2 px-5 rounded-md cursor-pointer hover:bg-[#0398d4] hover:text-white transition-all 
+            duration-200 hover:shadow-sm hover:scale-[1.05] hover:shadow-white hidden" onclick="stopCounter()" id="stopButton">
+                Stop
+            </button>
+
+            <!-- reset button -->
+            <button class="bg-white p-2 px-5 rounded-md cursor-pointer hover:bg-[#0398d4] hover:text-white transition-all 
+            duration-200 hover:shadow-sm hover:scale-[1.05] hover:shadow-white" onclick="resetCounter()">
+                Reset
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

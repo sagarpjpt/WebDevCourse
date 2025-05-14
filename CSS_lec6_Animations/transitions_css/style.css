@@ -1,0 +1,36 @@
+.container {
+    background-color: green;
+    border: 3px solid black;
+    height: 500px;
+    width: 500px;
+    display: flex;
+}
+
+.box {
+    height: 100px;
+    width: 150px;
+    margin: 20px;
+    border: 2px solid red;
+    background-color: aqua;
+
+    /* transition: 2s; */
+
+    /* transition-property: all; its bad practice as its time taking  */
+    /* transition-delay: 5s; */
+
+    /* transition: background-color 5s ease 1s;
+
+    transition: transform 5s ease 1s; */
+
+    /* apply transition on more than 1 prop */
+    transition: all 5s ease-in;
+/* created our own curve */
+    /* transition: all 5s cubic-bezier(0.84,-0.24, 0.15, 1.57); */
+}
+
+.box:hover {
+    /* background-color: yellow;
+    transform: rotate(45deg); */
+
+    transform: scale(2) translateX(500px) rotate(45deg);
+}

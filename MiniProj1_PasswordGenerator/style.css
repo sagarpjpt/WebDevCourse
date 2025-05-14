@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:wght@300;400;500;600&family=Roboto+Slab:wght@100..900&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: white;
+}
+
+:root {
+    
+    --color-deepBlue: #02049a;
+    --color-deepBlue2: #02042a;
+    --color-lightBlue: #2b84ea;
+
+    --color-greenLight: #61cea6;
+
+    --pl-white: hsl(0, 0%, 100%);
+
+    --vb-cyan: hsl(176, 100%, 44%);
+    --vb-cyan2: hsl(177, 92%, 70%);
+
+}
+
+#wrapper {
+    background: linear-gradient(45deg,  #84a0b5,  #5587ae,  #0d77c8);
+    width: 100vw;
+    height: 100vh;
+    overflow-y: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+
+    max-width: 450px;
+}
+
+h1 {
+    text-transform: uppercase;
+    text-align: center; 
+    color: var(--pl-white);
+    opacity: 0.75;
+    line-height: 1.2;
+    letter-spacing: 2px;
+    font: bold;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.display-container, .input-container{
+    position: relative;
+    /* background-color: var(--color-deepBlue); */
+    background-color: rgba(2, 4, 154, 0.5); /* frosted version of #02049a */
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    border-bottom: 0.35rem solid var(--color-deepBlue2);
+    margin: 0.5rem 0rem;
+    padding: 0.35rem; 
+}
+
+.display {
+    width: 100%;
+    background-color: transparent;
+    padding: 1.15rem 1rem;
+    color: white;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 30px;
+    letter-spacing: 1px;
+    padding-right: 3.25rem;
+    border: none;
+}
+
+.display::placeholder {
+    position: absolute;
+    top: 50%;
+    left: 1.5rem;
+    font-size: 1.5rem;
+    line-height: 30px;
+    color: var(--pl-white);
+    opacity: 0.65;
+    text-transform: uppercase;
+    transform: translateY(-50%); 
+}
+
+.display-container button {
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+}
+
+.copy-tooltip {
+    position: absolute;
+    background-color: var(--color-greenLight);
+    color: var(--pl-white);
+    font-size: 1.25rem;
+    top: -50px;
+    left: -30px;
+    padding: 5px 10px;
+    border-radius: 1rem;
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: bottom;
+    transition: all 250ms ease-in-out;
+}
+
+.copy-tooltip.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.input-container{
+    padding: 2rem;
+}
+
+.length-container, .strength-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.length-container p:nth-child(1), .strength-container p {
+    color: var(--pl-white);
+    font-size: 1.5rem;
+}
+
+.length-container p:nth-child(2) {
+    color: var(--color-greenLight);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.strength-container {
+    margin-bottom: 2rem;
+    margin-top: 1.75rem;
+}
+
+.strength-container div {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.generateButton {
+    border: none;
+    width: 100%;
+    padding: 1rem 0;
+    background-color: var(--color-greenLight);
+    text-align: center;
+    border-radius: 0.75rem;
+    border-bottom: 0.35rem solid var(--color-deepBlue2);
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.generateButton:hover {
+    scale: 1.02;
+    background-color:rgba(255, 255, 255, 0.926);
+    color: var(--color-greenLight);
+    border: 1px solid var(--color-greenLight);
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    margin: 0.3rem 0;
+    gap: 0 1rem;
+
+}
+
+.check input {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--vb-cyan);
+    cursor: pointer;
+    position: relative;
+    border-radius: 0.35rem;
+}
+
+.check input:checked{
+    background-color: var(--color-greenLight);
+}
+
+.check input:checked::before {
+    position: absolute;
+    content: '✔';
+    color: var(--dk-text);
+    font-size: 1.05rem;
+    font-weight: 600;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -3.5px;
+}
+
+.check label {
+    color: var(--pl-white);
+    font-size: 1.25rem;
+    letter-spacing: 0.75px;
+}
+
+.slider {
+    appearance: none;
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    outline: none;
+    height: 0.75rem;
+    cursor: pointer;
+    background: #d3d3d3; /* fallback unfilled color */
+
+    border-radius: 1rem;
+    background-image: linear-gradient(var(--color-greenLight), var(--color-greenLight));
+    background-repeat: no-repeat;
+    background-size: 50% 100%;
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+}
+
+.slider:focus {
+    outline: none;
+    outline: 3px solid var(--color-deepBlue2);
+}
+
+.slider::-webkit-slider-thumb {
+    position: relative;
+    z-index: 1;
+    appearance: none;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    background: var(--color-greenLight);
+    cursor: pointer;
+    margin-top: -3px;
+    box-shadow: 0px 0px 20px 0px var(--color-deepBlue2);
+    transition: all 100ms ease-in;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    outline: 2px solid var(--);
+    background-color: var(--color-deepBlue2);
+    box-shadow: 0px 0px 25px 5px var(--color-greenLight);
+}
+
+.slider::-moz-range-thumb {
+    position: relative;
+    z-index: 1;
+    appearance: none;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    background: var(--color-greenLight);
+    cursor: pointer;
+    margin-top: -3px;
+    box-shadow: 0px 0px 20px 0px var(--color-deepBlue2);
+    transition: all 100ms ease-in;
+}
+
+.slider::-moz-range-thumb:hover {
+    outline: 2px solid var(--);
+    background-color: var(--color-deepBlue2);
+    box-shadow: 0px 0px 25px 5px var(--color-greenLight);
+}
+

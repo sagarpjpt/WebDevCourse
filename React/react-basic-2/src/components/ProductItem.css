@@ -1,0 +1,24 @@
+.product-item {
+    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1.5rem;
+    padding: 1rem;
+}
+
+.product-item-description{
+    color: red;
+}
+
+.product-item-btn {
+    appearance: none;
+    border: none;
+    background: none;
+    padding: 0.3rem 0.6rem;
+    background-color:darkmagenta;
+    color: white;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+}

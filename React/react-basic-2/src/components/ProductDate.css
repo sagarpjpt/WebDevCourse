@@ -1,0 +1,9 @@
+.product-date {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+    min-width: 25%;
+}

@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto+Slab:wght@100..900&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+#wrapper {
+    height: 100vh;
+    overflow-y: auto ;
+    overflow-x: hidden;
+    perspective: 10px;
+}
+
+.container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    z-index: -1; /*this is added to move the container behind the section content*/
+}
+
+.background {
+    transform: translateZ(-40px) scale(5);
+    object-fit: cover;
+}
+
+.foreground {
+    transform: translateZ(-20px) scale(3);
+    left: -1%;
+    bottom: -5%;
+}
+
+.background, .foreground {
+    position: absolute;
+    z-index: -1; /*send both image behind and h1 becomes on top*/
+    height: 100%;
+    width: 100%;
+}
+
+h1 {
+    color: white;
+    position: absolute;
+    top: 5rem;
+    text-shadow: 0 0 10px rgba(0,0,0,3);
+    font-size: 7rem;
+    letter-spacing: 4px;
+}
+
+section {
+    background-color: rgb(45, 45, 45);
+    color: white;
+    padding: 5rem 0;
+}
+
+.bg1 {
+    background-image: url(resources/biking.jpg);
+}
+
+.bg2 {
+    background-image: url(resources/paragliding.jpg);
+}
+
+.bg3 {
+    background-image: url(resources/surfing.jpg);
+}
+
+.secHeading {
+    font-size: 5rem;
+    padding: 0 10rem;
+}
+
+.text {
+    font-size: 1.5rem;
+    padding: 0 10rem;
+    margin: 5rem 0;
+}
+
+.bg {
+    position: relative;
+    width: 100%;
+    background-attachment: fixed;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+}
+
+.desc {
+    position: absolute;
+    background-color: white;
+    padding: 0.5rem 2.5rem;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    /* translateX(-50%) → Moves the element left by 50% of its own width.
+    translateY(-50%) → Moves the element up by 50% of its own height. */
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: black;
+}
