@@ -213,7 +213,7 @@ function App() {
           <input
             type="radio"
             id="pushEverything"
-            name="pushNotifcations"
+            name="pushNotifications"
             value="EveryThing"
             onChange={changeHandler}
             className="mt-5"
@@ -225,7 +225,7 @@ function App() {
           <input
             type="radio"
             id="pushEmail"
-            name="pushNotifcations"
+            name="pushNotifications"
             value="Same as Email"
             onChange={changeHandler}
             className="mt-3"
@@ -237,7 +237,7 @@ function App() {
           <input
             type="radio"
             id="pushNothing"
-            name="pushNotifcations"
+            name="pushNotifications"
             value="No Push Notifications"
             onChange={changeHandler}
             className="mt-3"

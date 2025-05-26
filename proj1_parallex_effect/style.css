@@ -105,3 +105,48 @@ section {
     font-weight: 600;
     color: black;
 }
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    h1 {
+        font-size: 6rem;
+    }
+
+    .secHeading, .text {
+        padding: 0 5rem;
+    }
+
+    .desc{
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .foreground {
+        transform: scale(3.2) translateZ(-20px);
+        height: 100%;
+        width: 220%;
+        left: -15rem;
+        bottom: 7%;
+    }
+
+    .secHeading, .text {
+        padding: 0 2rem;
+    }
+
+    .secHeading {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    .desc{
+        font-size: 1.5rem;
+    }
+
+    .text {
+        font-size: 1rem;
+    }
+}

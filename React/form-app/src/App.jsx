@@ -159,9 +159,9 @@ function App() {
           value={formData.favCar}
         >
           <option value="scorpio">Scarpio</option>
-          <option value="scorpio">Fartuner</option>
-          <option value="scorpio">Tharr</option>
-          <option value="scorpio">Defender</option>
+          <option value="fartuner">Fartuner</option>
+          <option value="tharr">Tharr</option>
+          <option value="defender">Defender</option>
         </select>
         <label htmlFor="favCar"> Tell me yr fav Car</label>
 

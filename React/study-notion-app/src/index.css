@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+@theme {
+    --color-richblack-900: rgb(0, 8, 20);
+    --color-richblack-800: rgb(22, 29, 41);
+    --color-richblack-700: rgb(44, 51, 63);
+    --color-custom-text: rgb(175, 178, 191);
+    --color-custom-text-2: rgb(71,165,197);
+}
