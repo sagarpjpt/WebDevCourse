@@ -8,7 +8,7 @@ function NavBar(props){
     let setIsLoggedIn = props.setIsLoggedIn;
 
     return(
-        <div className="w-11/12 max-w-[1160px] mx-auto flex justify-between items-center text-white
+        <div className="w-11/12 max-w-[1160px] mx-auto flex flex-col sm:flex-row gap-3 sm:gap-0 justify-between items-center text-white
         py-4  text-lg">
 
             <Link to='/'>

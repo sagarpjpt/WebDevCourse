@@ -5,7 +5,7 @@ import {FcGoogle} from 'react-icons/fc'
 
 function Template({title, desc1, desc2, image, formtype, setIsLoggedIn}) {
     return (
-        <div className='text-white w-11/12 max-w-[1160px] flex justify-between py-12 mx-auto gap-x-12 overflow-x-hidden'>
+        <div className='text-white w-11/12 sm:max-w-[1160px] flex flex-wrap-reverse sm:flex-nowrap justify-center sm:justify-between py-12 mx-auto gap-10 sm:gap-x-12 overflow-x-hidden'>
             
             {/* left part div */}
             <div className='w-11/12 max-w-[450px]'>
