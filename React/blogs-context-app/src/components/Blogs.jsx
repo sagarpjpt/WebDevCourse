@@ -4,7 +4,7 @@ import Spinner from "./Spinner";
 
 function Blogs(){
 
-    // step 2 ---> consuming context
+    // step 3 ---> consuming context
     const {posts, laoding} = useContext(AppContext);
     console.log('printing posts after fetching from Blogs.jsx ---');
     console.log(posts);
