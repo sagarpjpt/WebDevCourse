@@ -7,14 +7,14 @@
 // pata hai waise hi yaha pe centralize store hota hai
 
 import { configureStore } from "@reduxjs/toolkit";
-// import { CounterSlice } from "./slices/CounterSlice"; // try to import CounterSlice without {} brackets
-import counterReducer from "./slices/CounterSlice"; // Import the default export
+import CounterSlice from "./slices/CounterSlice"; // try to import CounterSlice without {} brackets
+// import counterReducer from "./slices/CounterSlice"; // Import the default export
 
 
 export const store = configureStore({
     reducer: {
-        // counter: CounterSlice
-        counter: counterReducer  // Correct: reducer is the exported reducer
+        counter: CounterSlice
+        // counter: counterReducer  // Correct: reducer is the exported reducer
     },
 })
 

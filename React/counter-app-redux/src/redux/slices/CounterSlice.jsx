@@ -7,7 +7,7 @@ const initialState = {
     value: 0,
 }
 
-export const CounterSlice = createSlice({
+const CounterSlice = createSlice({
     name: 'counter',
     initialState,
     // reducers contains all function definition
