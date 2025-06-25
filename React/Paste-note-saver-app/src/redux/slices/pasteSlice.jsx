@@ -11,8 +11,14 @@ export const pasteSlice = createSlice({
     initialState,
     reducers: {
         addToPastes: (state, action) => {
-            // write logic for a paste already existing with same paste title
             const paste = action.payload;
+            // write logic for a paste already existing with same paste title
+            const index = state.pastes.findIndex((item) => item.title.toLowerCase() === paste.title.toLowerCase())
+            console.log(index);
+            if(index >= 0){
+                toast.error('Paste with this title already exist!!')
+                return;
+            }
             state.pastes.push(paste)
             localStorage.setItem('pastes', JSON.stringify(state.pastes));
             toast.success('Paste Created Successfully')

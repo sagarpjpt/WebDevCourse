@@ -22,7 +22,7 @@ function Paste() {
   }
 
   return (
-    <div className="w-[600px] mx-auto flex flex-col justify-center items-center">
+    <div className="w-11/12 px-2 sm:max-w-[700px] mx-auto flex flex-col justify-center items-center">
       <input
         type="serach"
         placeholder="Search Here..."
@@ -43,7 +43,7 @@ function Paste() {
                         {paste.content}
                     <span className="font-bold text-2xl"> "</span>
                 </div>
-                <div className="flex gap-3 justify-between my-4">
+                <div className="flex gap-3 justify-between my-4 flex-wrap">
                   
                   <NavLink to={`/?pasteId=${paste?._id}`}>                    
                     <button>Edit</button>
