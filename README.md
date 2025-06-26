@@ -6,10 +6,10 @@ Welcome to the **MERN Stack Development Course Repository**! This repo contains 
 
 This course is designed to help you become a proficient MERN stack developer by covering:
 
-1. **Introduction to MERN Stack**
+1. **Introduction to HTML CSS JS**
 2. **Node.js & Express.js Backend Development**
 3. **MongoDB & Mongoose for Data Modeling**
-5. **Frontend Development with React.js**
+5. **Frontend Development with React.js & TailwindCSS**
 6. **React Hooks and State Management**
 7. **Connecting Frontend with Backend**
 8. **Authentication with JWT**
