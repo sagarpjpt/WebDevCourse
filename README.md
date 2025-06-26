@@ -10,7 +10,7 @@ This course is designed to help you become a proficient MERN stack developer by 
 2. **Node.js & Express.js Backend Development**
 3. **MongoDB & Mongoose for Data Modeling**
 5. **Frontend Development with React.js & TailwindCSS**
-6. **React Hooks and State Management**
+6. **React Hooks and State Management using REDUX**
 7. **Connecting Frontend with Backend**
 8. **Authentication with JWT**
 9. **Deployment of MERN Apps**
