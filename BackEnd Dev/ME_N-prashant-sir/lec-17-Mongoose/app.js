@@ -25,7 +25,7 @@ app.use(errorController.get404);
 
 const PORT = 3000;
 const DB_PATH =
-  "mongodb+srv://root:password_123@clusterairbnb.2vv7oxe.mongodb.net/airbnb?retryWrites=true&w=majority&appName=ClusterAirbnb";
+  "mongodb+srv://<admin>:<password>@clusterairbnb.2vv7oxe.mongodb.net/airbnb?retryWrites=true&w=majority&appName=ClusterAirbnb";
 
 // first mongo connect then server will start
 mongoose
