@@ -5,8 +5,7 @@ const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
-const DB_PATH =
-  "mongodb+srv://<admin>:<password>@clusterairbnb.2vv7oxe.mongodb.net/airbnb?retryWrites=true&w=majority&appName=ClusterAirbnb";
+const DB_PATH = "your cluster string with db name";
 
 //Local Module
 const storeRouter = require("./routes/storeRouter");
@@ -17,48 +16,48 @@ const authRouter = require("./routes/authRouter");
 const { default: mongoose } = require("mongoose");
 
 const app = express();
- 
+
 app.set("view engine", "ejs");
 app.set("views", "views");
 
 const store = new MongoDBStore({
   uri: DB_PATH,
-  collection: 'sessions'
+  collection: "sessions",
 });
 
 app.use(express.urlencoded());
-app.use(session({
-  // secret used to sign the session Id cookie and encrypt the session data
-  secret: "lavnasur",
-  // forces the session to be saved back to the session store, even if the session was never modified during the request
-  resave: false,
-  // forces a session that is "uninitialized" to be saved to the store
-  saveUninitialized: true,
-  // now all sessions are stored in mongoDB instead of server memory
-  store: store,
-}))
+app.use(
+  session({
+    // secret used to sign the session Id cookie and encrypt the session data
+    secret: "lavnasur",
+    // forces the session to be saved back to the session store, even if the session was never modified during the request
+    resave: false,
+    // forces a session that is "uninitialized" to be saved to the store
+    saveUninitialized: true,
+    // now all sessions are stored in mongoDB instead of server memory
+    store: store,
+  })
+);
 app.use((req, res, next) => {
   req.isLoggedIn = req.session.isLoggedIn;
-  next()
-})
+  next();
+});
 app.use(authRouter);
 app.use(storeRouter);
 app.use("/host", (req, res, next) => {
   console.log("host middleware");
-  if(req.isLoggedIn){
+  if (req.isLoggedIn) {
     next();
-  } else{ 
-    return res.redirect('/login');
+  } else {
+    return res.redirect("/login");
   }
 });
-app.use("/host", hostRouter)
-
+app.use("/host", hostRouter);
 
 app.use(express.static(path.join(rootDir, "public")));
 app.use(errorController.get404);
 
 const PORT = 3000;
-
 
 // first mongo connect then server will start
 mongoose

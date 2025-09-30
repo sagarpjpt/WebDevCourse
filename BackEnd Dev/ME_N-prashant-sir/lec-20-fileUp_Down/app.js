@@ -6,8 +6,7 @@ const express = require("express");
 const session = require("express-session");
 const multer = require("multer");
 const MongoDBStore = require("connect-mongodb-session")(session);
-const DB_PATH =
-  "mongodb+srv://root:password_123@clusterairbnb.2vv7oxe.mongodb.net/airbnb?retryWrites=true&w=majority&appName=ClusterAirbnb";
+const DB_PATH = "your cluster string with db name";
 
 //Local Module
 const storeRouter = require("./routes/storeRouter");
@@ -18,86 +17,85 @@ const authRouter = require("./routes/authRouter");
 const { default: mongoose } = require("mongoose");
 
 const app = express();
- 
+
 app.set("view engine", "ejs");
 app.set("views", "views");
 
 const store = new MongoDBStore({
   uri: DB_PATH,
-  collection: 'sessions'
+  collection: "sessions",
 });
 
 const randomString = (length) => {
-  let result = '';
-  const characters = 'abcdefghijklmnopqrstuvwxyz';
+  let result = "";
+  const characters = "abcdefghijklmnopqrstuvwxyz";
   const charactersLength = characters.length;
-  for ( let i = 0; i < length; i++ ) {
+  for (let i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
-}
+};
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    cb(null, "uploads/");
   },
   filename: (req, file, cb) => {
-    cb(null, randomString(10) + '-' + file.originalname);
-  }
+    cb(null, randomString(10) + "-" + file.originalname);
+  },
 });
 
 const fileFilter = (req, file, cb) => {
-  if(['image/png', 'image/jpg', 'image/jpeg'].includes(file.mimetype)){
+  if (["image/png", "image/jpg", "image/jpeg"].includes(file.mimetype)) {
     cb(null, true); // accept file
-  } else{
+  } else {
     cb(null, false); // reject file
   }
-}
+};
 
 const multerOptions = {
   storage, // destination folder for uploaded files
-  fileFilter // filter which files to accept or reject
-}
+  fileFilter, // filter which files to accept or reject
+};
 
 app.use(express.urlencoded());
 app.use(multer(multerOptions).single("photo"));
 app.use(express.static(path.join(rootDir, "public")));
-app.use("/uploads",express.static(path.join(rootDir, "uploads"))); // to serve images for store pages
-app.use("/host/uploads",express.static(path.join(rootDir, "uploads"))); // to serve images for host pages
-app.use("/homes/uploads",express.static(path.join(rootDir, "uploads"))); // to serve images for home detail pages
+app.use("/uploads", express.static(path.join(rootDir, "uploads"))); // to serve images for store pages
+app.use("/host/uploads", express.static(path.join(rootDir, "uploads"))); // to serve images for host pages
+app.use("/homes/uploads", express.static(path.join(rootDir, "uploads"))); // to serve images for home detail pages
 
-app.use(session({
-  // secret used to sign the session Id cookie and encrypt the session data
-  secret: "lavnasur",
-  // forces the session to be saved back to the session store, even if the session was never modified during the request
-  resave: false,
-  // forces a session that is "uninitialized" to be saved to the store
-  saveUninitialized: true,
-  // now all sessions are stored in mongoDB instead of server memory
-  store: store,
-}))
+app.use(
+  session({
+    // secret used to sign the session Id cookie and encrypt the session data
+    secret: "lavnasur",
+    // forces the session to be saved back to the session store, even if the session was never modified during the request
+    resave: false,
+    // forces a session that is "uninitialized" to be saved to the store
+    saveUninitialized: true,
+    // now all sessions are stored in mongoDB instead of server memory
+    store: store,
+  })
+);
 app.use((req, res, next) => {
   req.isLoggedIn = req.session.isLoggedIn;
-  next()
-})
+  next();
+});
 app.use(authRouter);
 app.use(storeRouter);
 app.use("/host", (req, res, next) => {
   console.log("host middleware");
-  if(req.isLoggedIn){
+  if (req.isLoggedIn) {
     next();
-  } else{ 
-    return res.redirect('/login');
+  } else {
+    return res.redirect("/login");
   }
 });
-app.use("/host", hostRouter)
-
-
+app.use("/host", hostRouter);
 
 app.use(errorController.get404);
 
 const PORT = 3000;
-
 
 // first mongo connect then server will start
 mongoose

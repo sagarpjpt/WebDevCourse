@@ -24,8 +24,7 @@ app.use(express.static(path.join(rootDir, "public")));
 app.use(errorController.get404);
 
 const PORT = 3000;
-const DB_PATH =
-  "mongodb+srv://<admin>:<password>@clusterairbnb.2vv7oxe.mongodb.net/airbnb?retryWrites=true&w=majority&appName=ClusterAirbnb";
+const DB_PATH = "your cluster string with db name";
 
 // first mongo connect then server will start
 mongoose
