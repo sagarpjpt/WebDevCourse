@@ -1,0 +1,36 @@
+1--> npm init -y 
+    creates a package.json file
+
+2--> npm install express
+
+3--> create a file server.js
+
+4--> node server.js 
+    runs server.js file at localhost:specified port
+
+5--> we can verify/see get request from browser by client but for a post request we can not see it on browser so we use a testing tool called postman
+
+6--> install postman
+    paste post req url localhost:3000/api/cars in postman and in body under raw send json dummy data
+    {
+        "name":
+        "brand":
+    }
+
+7--> now when you send above post req at server error occures can't read property
+
+8--> hence we need a bodyparser/express.json() so that server able to parse/read json data sent by client
+
+9--> install mongodb community server, mongodbshell(CLI for handling db) and mongodbcompass(GUI for handling )
+    In terminal
+        s1. mongosh --version       to see current version
+
+10--> open compass and connect to localdb hosted on localhost:27017
+    create a db ---> Cars ---> collection named ---> mahindra
+
+11--> inside collection mahindra add dummy document/data as {name:__, brand:__}
+
+12--> use mongoose ---> which is used to link your mongo database to server. it is a middle layer(ODM-object data modeling library)
+    can also use it for schema creation and validations -- etc.
+
+13--> npm install mongoose  and connect server to database (ie localhost:27017/myDatabaseName) if defined db not present already then it create specified db

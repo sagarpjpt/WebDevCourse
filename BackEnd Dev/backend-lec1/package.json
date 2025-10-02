@@ -1,5 +1,5 @@
 {
-  "name": "backend-class-1",
+  "name": "backend-lec1",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mongoose": "^8.18.3"
   }
 }
