@@ -1,0 +1,30 @@
+1--> install nodemon
+    so no need to restart server again manually after changing server file
+
+2--> write script in package.json
+    "start": "nodemon index.js"
+
+3--> npm run start
+
+4--> install mongoose
+    create db.js file in config/ which connect to db using mongoose
+
+5--> install dotenv package
+    it helps to load env var in to process object eg process.env.var_name
+
+6--> create db schema inside models/ using mongoose
+
+NOTE---->every path of url given by client to server is connected to some controller(that handles logic what to do) at server
+
+7--> create a file(controller) createTodo.js inside controllers/
+
+8--> create a todos.js route inside routes/
+
+9--> create index.js file
+
+10--> from postman send a post request to localhost:3000/api/v1/createTodo with raw data
+{
+    "title":___, 
+    "description":___
+}
+and see the json response there send by createTodo controller
