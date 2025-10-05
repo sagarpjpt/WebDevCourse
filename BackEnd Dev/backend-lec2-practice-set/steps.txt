@@ -1,0 +1,4 @@
+tasks---> 
+1   define routes for creating and retreiving blogs post -->  postController
+2   define routes for liking and unliking posts --->  likeController
+3   define routes for creating and retrieving comments ---->  commentController

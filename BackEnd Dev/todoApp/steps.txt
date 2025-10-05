@@ -28,3 +28,28 @@ NOTE---->every path of url given by client to server is connected to some contro
     "description":___
 }
 and see the json response there send by createTodo controller
+
+LEC 76 BD3
+
+1--> create getTodo.js controller
+
+2--> import above controller fn's and create routes in routes/todos.js
+    /getTodos and
+    /getTodos/:id
+
+3--> write functions in getTodo controller
+    a)getTodos() that send all todos from db to client in json format
+    b)getTodoById() to fetch a paritcular todo and send to client
+    
+4--> verify both get request(api) working from postman
+
+5--> create a updateTodo.js controller
+
+6--> import above controller fn in todos.js inside routes/
+
+7--> write fn to update todo in above controller
+
+8--> simmilarly do for deleteTodo delete 
+request
+
+-----ALL GET, PUT, POST AND DELETE REQ HANDLED-----

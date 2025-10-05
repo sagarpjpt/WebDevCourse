@@ -19,7 +19,8 @@ exports.createTodo = async (req, res) => {
         
         // send a json response with the saved todo item to client
         res.status(201).json({ 
-            message: 'Todo Created', todo: savedTodo 
+            message: 'Todo Created', 
+            todo: savedTodo 
         });
     } catch (error) {
         res.status(500).json({ 
