@@ -1,0 +1,14 @@
+-----TASKS----
+1   define routes for creating and retreiving blogs post -->  postController
+2   define routes for liking and unliking posts --->  likeController
+3   define routes for creating and retrieving comments ---->  commentController
+
+----STEPS----
+
+1--> create config/database.js
+
+2--> create .env file
+
+3--> create index.js
+
+4--> create controllors and models(schema)

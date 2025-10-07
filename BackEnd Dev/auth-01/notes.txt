@@ -1,0 +1,14 @@
+1--> add a JWT_SECRET key in .env file
+
+2--> install bcrypt package and import it in controllers/Auth.js
+    what is bcrypt ? ---> bcrypt is a password hashing library.
+    It’s used to securely store passwords in your database.
+
+    👉 In simple words:
+
+    bcrypt converts your plain text password into a hashed (encrypted) form that cannot be easily reversed or cracked.
+
+3--> write /signup logic in Auth Controller
+
+4--> send a post request from postman with required raw data { name, email, password, role } at 
+ip_address/api/v1/signup
