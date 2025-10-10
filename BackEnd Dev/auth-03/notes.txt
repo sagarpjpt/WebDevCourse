@@ -1,0 +1,51 @@
+1--> add a JWT_SECRET key in .env file
+
+2--> install bcrypt package and import it in controllers/Auth.js
+    what is bcrypt ? ---> bcrypt is a password hashing library.
+    It’s used to securely store passwords in your database.
+
+    👉 In simple words:
+
+    bcrypt converts your plain text password into a hashed (encrypted) form that cannot be easily reversed or cracked.
+
+3--> write /signup logic in Auth Controller
+
+4--> send a post request from postman with required raw data { name, email, password, role } at 
+ip_address/api/v1/signup
+
+------AUTH 02-----
+
+1--> handle /login route in routes/user.js and import controller fn login from /controllers/Auth.js
+
+2--> install jsonwebtoken package and import in Auth.js 
+
+3--> generate token once credentials sent by client are verified
+
+4--> send res message with cookie(token in it) to client
+
+5--> verfiy using postman post request at url/api/v1/login
+
+6--> adding middleware which handle autherization by protecting routes (eg. /admin , /student) specific for Admin, Student and Visitor
+
+7--> import fn's from from /middleware/auth.js inside /routes/user.js
+
+HW--> what is cookie parser and why it is used ?
+
+8--> verify working of middleware by sending GET req at url/api/v1/student or /admin with data { email:__, token:___ }
+
+----AUTH 03---
+
+1--> install cookie-parser and use this middleware in indexjs
+
+2--> update way of extracting jwt token in auth.js middleware 
+    ie use most secure way (req.header)
+
+3--> verify working, using postman by sending req at 
+url/api/v1/admin or
+url/api/v1/student 
+with token: 
+a) in req body
+b) in cookie and
+c) in req header
+
+4--> in postman under header section add "Autherization" key and value "Bearer <tokenvalue>"
