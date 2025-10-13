@@ -1,0 +1,22 @@
+Q-> what is cloudinary ?
+Ans-> Cloudinary is a cloud-based media management platform that helps you easily upload, store, optimize, and deliver images and videos for your websites or applications.
+
+1--> create cloudinary.js in configs/
+
+2--> npm i cloudinary
+
+3--> config cloudinary.js 
+
+4--> login/signup in cloudinary 
+    see assets/folders/folder_name to view your uploaded files
+
+5--> add api keys, cloud name and secret key of cloudinary in .env file
+
+6--> npm install express-fileupload or 
+    npm install multer and add this middleware to index.js
+    a.const fileupload = require('express-fileupload')
+    b.app.use(fileupload())
+
+7--> add a files folder inside controllers folder where uploaded file will be stored
+
+8--> verify by sending post req at url/api/v1/upload/imageupload with data {name, tags, email, imageFile} in body>form-data as key value pair
