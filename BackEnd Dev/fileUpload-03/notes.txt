@@ -1,0 +1,49 @@
+Q-> what is cloudinary ?
+Ans-> Cloudinary is a cloud-based media management platform that helps you easily upload, store, optimize, and deliver images and videos for your websites or applications.
+
+1--> create cloudinary.js in configs/
+
+2--> npm i cloudinary
+
+3--> config cloudinary.js 
+
+4--> login/signup in cloudinary 
+    see assets/folders/folder_name to view your uploaded files
+
+5--> add api keys, cloud name and secret key of cloudinary in .env file
+
+6--> npm install express-fileupload or 
+    npm install multer and add this middleware to index.js
+    a.const fileupload = require('express-fileupload')
+    b.app.use(fileupload())
+
+7--> add a files folder inside controllers folder where uploaded file will be stored
+
+8--> verify by sending post req at url/api/v1/upload/imageupload with data {name, tags, email, imageFile} in body>form-data as key value pair
+
+---------FILE UPLOAD 02--------
+
+Q-> what is pre and post middleware in mongoose ?
+
+Q-> what is Nodemailer ?
+
+Q-> what is sqs and sns service in aws & what is smtp ?
+
+task-> as soon as an entry is made in db(ie when file uploaded by client) then send a email to user/client 
+
+1--> add post middleware in models/File.js
+
+2--> npm i nodemailer and import in configs/emailService.js
+
+3--> define mail_host, main_user & mail_pass in .env file to use it in configs/emailService.js
+
+4--> we will use gmail mail server
+    mail_host = smtp.gmail.com
+    mail_user = yourgmail addr
+    mail_pass = app_password
+
+    YOU HAVE TO CREATE A APP PASSWORD IN GMAIL ACCOUNT AND COPY THAT PASSWORD IN .ENV FILE
+
+5--> we use step 4 var to make transporter for sending mails in configs/emailService.js and import it in models/File.js inside post middleware
+
+6--> verify email recieved or not by sending post req at url/api/v1/upload/imageupload with data {name, tags, email, imageFile} in body>form-data as key value pair
