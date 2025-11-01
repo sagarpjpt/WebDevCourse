@@ -1,0 +1,95 @@
+----BACKEND-CLASS-01---------
+
+1--> npm i otp-generator package for generating otp's
+
+2--> create all 9 models
+
+3--> use .pre() middleware in otp model(after schema and before model exports) to send otp before saving otp doc to db
+
+4--> create a mail sender inside file in ./utils/
+
+5--> create Auth and ResetPassword controller in ./controllers
+
+----BACKEND-CLASS-02---------
+
+1--> write Auth.js logic/fn's
+
+2--> use dicebear.com api to create image url for profile pic it creates profile pic by first letter of fname and lname alphabet
+    https://api.dicebear.com/5.x/initials/svg?seed=${firstName}${lastName}
+
+3--> write auth.js middleware in ./middlewares/
+
+4--> write fn for ResetPassword logic
+
+5--> add two more field in User Model token and resetpasswordExpires
+
+6--> genrate random string(ie token) used for ResetPassword
+using crypto.randomUUID()
+
+----BACKEND-CLASS-03---------
+
+1--> only admin can decide tags in web app and before adding course(by instructor) tags must be defined
+
+2--> create Tags.js controller - getAllTags, createTag
+
+3--> create Course.js controller - createCourse, getAllCourse & getCourseById
+
+4--> add a utils fn imageUploader
+
+----BACKEND-CLASS-04---------
+
+1--> rename Tag.js model to Category.js model and same for Tags Controller & its fn's
+
+2--> because tag will be just , separated strings
+
+    course to tag -- one to many reln
+    category to course -- one to many reln
+
+3--> write Section controller - create, update and delete fn
+
+4--> and subsection controller - create , update and delete
+
+5--> create Profile controller - updateProfile fn, deleteAccount fn, getAllUserDetails fn
+
+----BACKEND-CLASS-05---------
+
+1--> read razorpay documentation for integration
+
+2--> create a mail template using html and css so that email sent to user look good
+    under ./mail/templates/
+    courseEnrollmentEmail.js, emailVerificationTemplate.js, paymentSuccess.js and passwordUpdate.js
+
+3--> create payments.js controller - capturePayment and verifySignature fn
+    npm i razorpay
+
+4--> create ./configs/razorpay.js which return an instance of razorpay
+
+----BACKEND-CLASS-06---------
+
+1-->add getCourseDetails fn (which fetch all detail of course) in Course.js controller
+
+2--> add RatingAndReview.js controller - createRatingAndReview, getAverageRating, getAllRatingsAndReviewsByCourseId and getAllRatingsAndReviews fn
+
+3--> add a categoryPageDetails fn in Category controller
+
+----BACKEND-CLASS-07---------
+
+1--> fill all env values
+2--> add cloudinary.js in configs/ folder
+3-> login/signup in razorpay 
+    -account and settings>documentaion>search for api sand box setup
+    https://razorpay.com/docs/api/sandbox-setup/
+
+4--> generate api keys 
+    test api key and test key secret
+
+5--> create server.js file
+6--> all routes file in ./routes
+
+7--> first test Auth.js controller fn using postman
+    simmilarly for other controllers fn
+
+8--> add a updateDP fn in Profile controller which updates user img
+
+9--> now create razorpay webhook in razorpay acc and save that in env file
+    it is a custom secret key that you define when you create a webhook by giving webhook url(Your backend endpoint where you’ll handle Razorpay webhook events e.g. https://yourdomain.com/api/payment/verify ) in your Razorpay Dashboard.

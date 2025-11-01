@@ -1,0 +1,60 @@
+const express = require('express');
+const router = express.Router();
+
+// import controllers fn
+const {createCategory, getAllCategory, categoryPageDetails} = require('../controllers/Category');
+const { auth, isAdmin, isInstructor, isStudent } = require('../middlewares/auth');
+const { createCourse, getAllCourses, getCourseDetails } = require('../controllers/Course');
+const { createSection, updateSection, deleteSection } = require('../controllers/Section');
+const {createSubSection, deleteSubSection, updateSubSection} = require('../controllers/SubSection');
+const { createRatingAndReview, getAverageRating, getAllRatingsAndReviews, getAllRatingsAndReviewsByCourseId } = require('../controllers/RatingAndReview');
+
+// route to create category
+router.post('/create-category', auth, isAdmin, createCategory);
+
+// route to get all categories
+router.get('/get-all-categories', auth, getAllCategory);
+
+// route to get category page details
+router.get('/category-page-details/:categoryId', auth, categoryPageDetails);
+
+// router to create course
+router.post('/create-course', auth, isInstructor, createCourse);
+
+// router to get course details
+router.get('/course/:courseId', auth, getCourseDetails);
+
+// router to get all courses
+router.get('/get-all-courses', auth, getAllCourses);
+
+// router to add section to course
+router.post('/add-section', auth, isInstructor, createSection);
+
+// router to update section
+router.put('/update-section', auth, isInstructor, updateSection);
+
+// router to delete section
+router.delete('/delete-section', auth, isInstructor, deleteSection);
+
+// router to create subsection
+router.post('/add-subsection', auth, isInstructor, createSubSection);
+
+// router to update subsection
+router.put('/update-subsection', auth, isInstructor, updateSubSection);
+
+// router to delete subsection
+router.delete('/delete-subsection', auth, isInstructor, deleteSubSection);
+
+// router to create rating and review
+router.post('/create-rating-review', auth, isStudent, createRatingAndReview);
+
+// router to get average rating of a course
+router.get('/average-rating/:courseId', getAverageRating);
+
+// router to get all ratings and reviews
+router.get('/all-ratings-reviews', getAllRatingsAndReviews);
+
+// router to get all ratings and reviews by courseId
+router.get('/all-ratings-reviews/:courseId', getAllRatingsAndReviewsByCourseId);
+
+module.exports = router;
