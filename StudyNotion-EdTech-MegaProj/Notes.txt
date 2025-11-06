@@ -80,7 +80,7 @@ using crypto.randomUUID()
     -account and settings>documentaion>search for api sand box setup
     https://razorpay.com/docs/api/sandbox-setup/
 
-4--> generate api keys 
+4--> generate keys in test mode first
     test api key and test key secret
 
 5--> create server.js file
@@ -93,3 +93,60 @@ using crypto.randomUUID()
 
 9--> now create razorpay webhook in razorpay acc and save that in env file
     it is a custom secret key that you define when you create a webhook by giving webhook url(Your backend endpoint where you’ll handle Razorpay webhook events e.g. https://yourdomain.com/api/payment/verify ) in your Razorpay Dashboard.
+    save this secret to env file
+
+------------FRONT-END-CLASS01------------------
+
+1--> what is concurrently ? 
+    concurrently is an npm package that allows you to run multiple npm scripts or commands concurrently (in parallel), instead of running them one by one.
+
+2--> setup react + tailwindcss
+
+3--> install concurrently at root proj dir ie. studynotion
+    add this script "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,green\" \"npm run server --prefix backend\" \"npm run client --prefix frontend\""
+
+    and this script
+    "server": "nodemon server.js"
+    to backend folder package.json
+
+    and this "client": "vite" to frontend folder package.json
+
+4--> add utils folder and data folder in ./src
+
+5--> add custom theme in index.css
+
+6--> define home route in app.jsx
+
+7--> write home page
+
+8--> npm i react-type-animation
+
+------------FRONT-END-CLASS02------------------
+
+1--> add section 2 and 3 of home page
+2--> added remaining explore page in section 1 called ExploreMore.jsx component
+
+------------FRONT-END-CLASS03------------------
+
+1--> first mount navbar component at app.jsx 
+
+2--> now when creating login/signup btn on nav we need to check whether user is logged in and if yes then hide both btn and show dashboard link and a profile icon
+    if(token === null) show btn's
+    else means login show profile icon
+
+3--> will use redux toolkit
+    npm install @reduxjs/toolkit
+    npm install react-redux
+
+4--> wrap App.jsx in <Provider store={store}></Provider> at main.jsx
+
+    -create store at main.jsx and add all reducers to this store
+
+    -since we have multiple reducer eg-auth, cart and profile etc 
+
+    -so we combined all reducer at/redux/reducer/index.jsx and make root reducer and add to the store
+
+    -all these reducers made from slices so create slice for each state auth, cart etc
+
+5--> create apiConnector.js and apis.js in ./services
+    -npm i axios
