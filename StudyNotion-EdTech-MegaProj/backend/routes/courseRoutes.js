@@ -13,7 +13,7 @@ const { createRatingAndReview, getAverageRating, getAllRatingsAndReviews, getAll
 router.post('/create-category', auth, isAdmin, createCategory);
 
 // route to get all categories
-router.get('/get-all-categories', auth, getAllCategory);
+router.get('/get-all-categories', getAllCategory);
 
 // route to get category page details
 router.get('/category-page-details/:categoryId', auth, categoryPageDetails);

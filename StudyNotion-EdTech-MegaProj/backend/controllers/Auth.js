@@ -192,13 +192,13 @@ exports.login = async (req, res) => {
       role: user.accountType,
     };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "2h",
+      expiresIn: "24h",
     });
 
     // create cookie and send response
     const options = {
       httpOnly: true,
-      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // 3 days
+      expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), // 1 days
     };
     res.cookie("token", token, options).status(200).json({
       success: true,
@@ -274,3 +274,36 @@ exports.changePassword = async (req, res) => {
     });
   }
 };
+
+// verify cookie
+exports.meController = (req, res) => {
+  if(req.user) {
+    return res.json({success: true,
+      user: req.user
+    })
+  }
+  return res.status(401).json({success: false, message: "Not Authenticated"})
+}
+
+
+// logout
+exports.logout = async (req, res) => {
+  try{
+    // clear token cookie
+    res.clearCookie("token", {
+      httpOnly: true
+    })
+
+    // return res
+    return res.status(200).json({
+      success: true,
+      message: "Logged Out Successfully"
+    })
+  } catch(e) {
+    console.log('error during logout:', e)
+    return res.status(500).json({
+      success: false,
+      message: "Error while logging out"
+    })
+  }
+}

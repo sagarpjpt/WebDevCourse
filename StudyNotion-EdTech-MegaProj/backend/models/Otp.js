@@ -12,7 +12,15 @@ const otpSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
+    /*
+        Step	            Old Code Behavior	                      Fixed Code Behavior
+        Server start	     Date.now() runs once → constant date	  Date.now stored as function
+        First OTP	         uses old timestamp	                    uses current time
+        TTL index	         thinks doc is expired	                expires after 5 min
+        Result	           instantly deleted	                    lives for 5 min ✅
+    
+    */ 
     expires: 5 * 60, // this document expires in 5 min
   },
 });

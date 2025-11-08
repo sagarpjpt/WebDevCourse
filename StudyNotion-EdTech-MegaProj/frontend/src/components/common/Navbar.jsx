@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/Logo/Logo-Full-Light.png";
 import { Link, useLocation } from "react-router-dom";
@@ -14,8 +13,8 @@ import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 const Navbar = () => {
   const location = useLocation();
 
-  const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
+  console.log(user);
   const { totalItems } = useSelector((state) => state.cart);
 
   const [subLinks, setSubLinks] = useState([]);
@@ -25,15 +24,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        // Prefer token from Redux, otherwise no auth header (if API is public)
-        const authToken = token ?? "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoaXZhbTAxMTIxOTk5cHJhamFwYXRpQGdtYWlsLmNvbSIsInVzZXJJZCI6IjY5MDQ4YjNmMzJhM2QyMzNjNjZiNzA3ZiIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzYyNDQwNjQyLCJleHAiOjE3NjI0NDc4NDJ9.ux5cerLmFwmMFzttWOxf8-L7DmIYVv73sP7CoUY-GJg";
-
-        const res = await apiConnector(
-          "GET",
-          categories.CATEGORIES_API,
-          null,
-          authToken ? { Authorization: `Bearer ${authToken}` } : {}
-        );
+        const res = await apiConnector("GET", categories.CATEGORIES_API);
 
         if (res && res.data) {
           // adapt to API shape
@@ -46,7 +37,7 @@ const Navbar = () => {
     };
 
     fetchCategories();
-  }, [token]); // refetch if token changes
+  }, []);
 
   // helper to close mobile on navigation
   const handleNavigate = () => {
@@ -80,7 +71,9 @@ const Navbar = () => {
                       <button
                         type="button"
                         className={`flex items-center gap-1 text-sm font-medium ${
-                          location.pathname === link.path ? "text-yellow-25" : ""
+                          location.pathname === link.path
+                            ? "text-yellow-25"
+                            : ""
                         }`}
                         aria-haspopup="menu"
                         aria-expanded="false"
@@ -122,7 +115,9 @@ const Navbar = () => {
                     <Link to={link.path} onClick={handleNavigate}>
                       <span
                         className={`group relative transition-all duration-200 ${
-                          location.pathname === link.path ? "text-yellow-25" : ""
+                          location.pathname === link.path
+                            ? "text-yellow-25"
+                            : ""
                         }`}
                       >
                         {link.title}
@@ -138,17 +133,21 @@ const Navbar = () => {
           {/* Right-side actions - hidden on very small screens? keep them visible on md */}
           <div className="hidden md:flex gap-x-4 items-center">
             {user && user?.role !== "Instructor" && (
-              <Link to="/dashboard/cart" className="relative" onClick={handleNavigate}>
+              <Link
+                to="/dashboard/cart"
+                className="relative"
+                onClick={handleNavigate}
+              >
                 <AiOutlineShoppingCart className="text-white text-2xl" />
-                {Array.isArray(totalItems) && totalItems.length > 0 && (
+                {totalItems > 0 && (
                   <span className="absolute -top-2 -right-3 text-yellow-50 text-xs bg-richblack-700 px-2 py-0.5 rounded-full font-semibold">
-                    {totalItems.length}
+                    {totalItems}
                   </span>
                 )}
               </Link>
             )}
 
-            {token === null && (
+            {!user ? (
               <>
                 <Link to="/login" onClick={handleNavigate}>
                   <button className="px-5 py-2 text-white border-richblack-700 bg-richblack-800 rounded-md text-sm cursor-pointer">
@@ -161,21 +160,50 @@ const Navbar = () => {
                   </button>
                 </Link>
               </>
+            ) : (
+              <ProfileDropDown />
             )}
-
-            {token !== null && <ProfileDropDown />}
           </div>
 
           {/* Mobile hamburger */}
-          <div className="md:hidden flex items-center">
+          {/* <div className="md:hidden flex items-center">
             <button
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               onClick={() => setMobileOpen((p) => !p)}
               className="p-2 text-white"
             >
-              {mobileOpen ? <HiOutlineX className="text-2xl" /> : <HiOutlineMenu className="text-2xl" />}
+              {mobileOpen ? (
+                <HiOutlineX className="text-2xl" />
+              ) : (
+                <HiOutlineMenu className="text-2xl" />
+              )}
+            </button>
+          </div> */}
+
+          {/* Mobile actions: profile icon (left) + hamburger (right) */}
+          <div className="md:hidden flex items-center gap-1">
+            {/* show profile icon left of hamburger only on mobile and only if user exists */}
+            {user ? (
+              // pass align="left" so dropdown opens to left on mobile
+              <div className="flex items-center">
+                <ProfileDropDown dropdownAlign="left" />
+              </div>
+            ) : null}
+
+            {/* Hamburger toggle */}
+            <button
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              onClick={() => setMobileOpen((p) => !p)}
+              className="p-2 text-white"
+            >
+              {mobileOpen ? (
+                <HiOutlineX className="text-2xl" />
+              ) : (
+                <HiOutlineMenu className="text-2xl" />
+              )}
             </button>
           </div>
+
         </div>
       </div>
 
@@ -221,7 +249,9 @@ const Navbar = () => {
                           className="w-full flex items-center justify-between py-3 px-2 text-left"
                           aria-expanded={mobileCatalogOpen}
                         >
-                          <span className="text-lg font-medium">{link.title}</span>
+                          <span className="text-lg font-medium">
+                            {link.title}
+                          </span>
                           <IoIosArrowDropdownCircle
                             className={`text-xl transition-transform duration-200 ${
                               mobileCatalogOpen ? "rotate-180" : ""
@@ -279,26 +309,26 @@ const Navbar = () => {
                   onClick={handleNavigate}
                 >
                   <AiOutlineShoppingCart className="text-2xl" />
-                  <span>Cart {Array.isArray(totalItems) ? `(${totalItems.length})` : ""}</span>
+                  <span>Cart {totalItems > 0 ? `(${totalItems})` : ""}</span>
                 </Link>
               )}
 
-              {token === null ? (
+              {!user && (
                 <div className="flex gap-2">
                   <Link to="/login" onClick={handleNavigate} className="flex-1">
                     <button className="w-full px-5 py-2 text-white border-richblack-700 bg-richblack-800 rounded-md text-sm">
                       Log In
                     </button>
                   </Link>
-                  <Link to="/signup" onClick={handleNavigate} className="flex-1">
+                  <Link
+                    to="/signup"
+                    onClick={handleNavigate}
+                    className="flex-1"
+                  >
                     <button className="w-full px-5 py-2 text-white border-richblack-700 bg-richblack-800 rounded-md text-sm">
                       Sign Up
                     </button>
                   </Link>
-                </div>
-              ) : (
-                <div>
-                  <ProfileDropDown />
                 </div>
               )}
             </div>

@@ -126,7 +126,7 @@ using crypto.randomUUID()
 1--> add section 2 and 3 of home page
 2--> added remaining explore page in section 1 called ExploreMore.jsx component
 
-------------FRONT-END-CLASS03------------------
+------------FRONT-END-CLASS03-04------------------
 
 1--> first mount navbar component at app.jsx 
 
@@ -150,3 +150,14 @@ using crypto.randomUUID()
 
 5--> create apiConnector.js and apis.js in ./services
     -npm i axios
+
+6--> add login/signup pages
+
+------------FRONT-END-CLASS05------------------
+
+1--> added verify-email page
+   -RegExp.prototype.test() checks if a given string matches the pattern. 
+
+2-->  added contact page
+
+3--> setup authentication login signup logout change password etc with server
