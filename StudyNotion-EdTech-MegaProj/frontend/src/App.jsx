@@ -13,6 +13,7 @@ import { logout, setUser } from "./redux/slices/profileSlice.jsx";
 import Spinner from './components/common/Spinner.jsx'
 import PublicRoute from "./components/core/Auth/PublicRoute.jsx";
 import VerifyEmailRoute from "./components/core/Auth/VerifyEmailRoute.jsx";
+import About from "./pages/About.jsx";
 
 const App = () => {
 
@@ -63,6 +64,7 @@ const App = () => {
           </VerifyEmailRoute>
         } />
         <Route path='/contact' element={<Contact />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </div>
   );

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import CountryCode from "../../../data/countrycode.json";
 import { apiConnector } from "../../../services/apiConnector";
-// import { contactusEndpoint } from "../../../services/apis";
+import { contactusEndpoint } from "../../../services/apis";
+import toast from "react-hot-toast";
+import Spinner from "../../common/Spinner";
 
 const ContactUsForm = () => {
   const [loading, setLoading] = useState(false);
@@ -14,38 +16,50 @@ const ContactUsForm = () => {
   } = useForm();
 
   // Example submit (uncomment when endpoint ready)
-  // const submitContactForm = async (data) => {
-  //   try {
-  //     setLoading(true);
-  //     const res = await apiConnector(
-  //       "POST",
-  //       contactusEndpoint.CONTACT_US_API,
-  //       data
-  //     );
-  //     setLoading(false);
-  //   } catch (error) {
-  //     console.log("ERROR MESSAGE - ", error.message);
-  //     setLoading(false);
-  //   }
-  // };
+  const submitContactForm = async (data) => {
+    try {
+      setLoading(true);
+      console.log(data)
+      const res = await apiConnector(
+        "POST",
+        contactusEndpoint.CONTACT_US_API,
+        data
+      );
+      if(res?.data?.success){
+        toast.success("Thank You! We Will Contact You Shortly")
+      }
+      else {
+        toast.error(res.data.message)
+      }
+    } catch (error) {
+      console.log("ERROR MESSAGE - ", error.message);
+      toast.error("Please Fill The Form Again!")
+    } finally{
+      setLoading(false)
+    }
+  };
 
-  // useEffect(() => {
-  //   if (isSubmitSuccessful) {
-  //     reset({
-  //       email: "",
-  //       firstname: "",
-  //       lastname: "",
-  //       message: "",
-  //       phoneNo: "",
-  //     });
-  //   }
-  // }, [reset, isSubmitSuccessful]);
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset({
+        email: "",
+        firstname: "",
+        lastname: "",
+        message: "",
+        phoneNo: "",
+      });
+    }
+  }, [reset, isSubmitSuccessful]);
+
+  if(loading) return <div className="flex items-center justify-center">
+    <Spinner />
+  </div>
 
   return (
     <form
       className="flex flex-col gap-6 bg-richblack-900 text-richblack-5 rounded-lg w-full max-w-2xl mx-auto"
       style={{ marginTop: "30px" }}
-      // onSubmit={handleSubmit(submitContactForm)}
+      onSubmit={handleSubmit(submitContactForm)}
     >
       {/* ========= NAME FIELDS ========= */}
       <div className="flex flex-col lg:flex-row gap-5">

@@ -1,6 +1,7 @@
 import React from "react"
 import ContactDetails from "../components/core/ContactPage/ContactDetails"
 import ContactForm from "../components/core/ContactPage/ContactForm"
+import Footer from "../components/common/Footer"
 
 const Contact = () => {
   return (
@@ -22,6 +23,8 @@ const Contact = () => {
           Happy & Satisfied Learners!
         </h1>
       </div>
+      {/* footer */}
+      <Footer />
     </div>
   )
 }

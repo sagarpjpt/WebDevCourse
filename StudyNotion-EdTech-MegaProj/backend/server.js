@@ -11,6 +11,7 @@ const userRoutes = require('./routes/userRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
+const contactUsRoute = require('./routes/contact')
 
 // configure dotenv
 dotenv.config();
@@ -36,6 +37,7 @@ app.use('/api/v1/auth', userRoutes);
 app.use('/api/v1/profiles', profileRoutes);
 app.use('/api/v1/courses', courseRoutes);
 app.use('/api/v1/payments', paymentRoutes);
+app.use("/api/v1/reach", contactUsRoute);
 
 // Connect to MongoDB
 connectDB();

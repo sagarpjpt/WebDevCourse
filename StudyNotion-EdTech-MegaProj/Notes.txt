@@ -158,6 +158,19 @@ using crypto.randomUUID()
 1--> added verify-email page
    -RegExp.prototype.test() checks if a given string matches the pattern. 
 
-2-->  added contact page
+2--> setup authentication login signup logout change password etc with server
 
-3--> setup authentication login signup logout change password etc with server
+3--> protect routes using Private and PublicRoute
+
+4--> add /auth/me - meController and /logout controller fn
+
+5--> add profiledropdown component
+
+------------FRONT-END-CLASS06------------------
+
+1--> add about us page and contact page
+
+2--> npm i react-hook-form
+    used for contactusform component
+
+3--> create contact route and contactUs controller in backend in respective folders

@@ -15,3 +15,7 @@ export const auth = {
 export const profile = {
     GET_USER_DETAILS: BASE_URL + '/api/v1/profiles/get-user-details',
 }
+
+export const contactusEndpoint = {
+  CONTACT_US_API: BASE_URL + "/api/v1/reach/contact",
+}

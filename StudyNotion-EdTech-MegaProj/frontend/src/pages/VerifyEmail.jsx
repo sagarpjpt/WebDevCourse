@@ -4,8 +4,6 @@ import { apiConnector } from "../services/apiConnector";
 import { auth } from "../services/apis";
 import toast from "react-hot-toast";
 import Spinner from "../components/common/Spinner";
-import { useDispatch } from "react-redux";
-import { setUser } from "../redux/slices/profileSlice";
 
 const VerifyEmail = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -13,7 +11,6 @@ const VerifyEmail = () => {
   const inputsRef = useRef([]);
   const location = useLocation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   // Handle input change
   const handleChange = (e, index) => {
