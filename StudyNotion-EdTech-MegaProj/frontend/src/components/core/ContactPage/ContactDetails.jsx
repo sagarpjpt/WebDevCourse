@@ -16,14 +16,14 @@ const contactDetails = [
     heading: "Visit us",
     description: "Come and say hello at our office HQ.",
     details:
-      "Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016",
+      "Kidwai Nagar O Block, Kanpur-208011",
       linkType: null
   },
   {
     icon: "IoCall",
     heading: "Call us",
     description: "Mon - Fri From 8am to 5pm",
-    details: "+123 456 7869",
+    details: "+999 888 2222",
     linkType: "phone"
   },
 ]

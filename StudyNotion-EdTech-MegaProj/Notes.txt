@@ -174,3 +174,12 @@ using crypto.randomUUID()
     used for contactusform component
 
 3--> create contact route and contactUs controller in backend in respective folders
+
+------------FRONT-END-CLASS06------------------
+
+1--> mounting at app.jsx and creating rateus page & project page
+
+2--> npm i framer-motion 
+    framer-motion is a popular React library for animations and transitions.
+
+3--> add a dashboard button in profile drop down which links to /dashboard/profile

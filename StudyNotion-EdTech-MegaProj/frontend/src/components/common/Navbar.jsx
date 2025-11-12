@@ -66,30 +66,35 @@ const Navbar = () => {
               {NavbarLinks.map((link, index) => (
                 <li key={index} className="relative">
                   {link.title === "Catalog" ? (
-                    /* Desktop Catalog: hover dropdown */
-                    <div className="group relative hover:text-yellow-25">
+                    <div className="group relative">
                       <button
                         type="button"
-                        className={`flex items-center gap-1 text-sm font-medium ${
-                          location.pathname === link.path
-                            ? "text-yellow-25"
-                            : ""
-                        }`}
+                        className={`flex items-center gap-2 text-sm font-medium px-1 py-1 rounded-md transition-colors duration-200
+                ${
+                  location.pathname === link.path
+                    ? "text-yellow-25"
+                    : "text-richblack-25 hover:text-yellow-25"
+                }`}
                         aria-haspopup="menu"
                         aria-expanded="false"
                       >
                         <span>{link.title}</span>
-                        <IoIosArrowDropdownCircle className="text-xl group-hover:rotate-180 transition-transform duration-200" />
+                        <IoIosArrowDropdownCircle className="text-xl transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180" />
                       </button>
 
-                      {/* Hover dropdown */}
+                      {/* Dropdown panel (visible on hover or keyboard focus) */}
                       <div
-                        className="invisible group-hover:visible opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-2
-                          absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[320px] z-20 rounded-md bg-richblack-5 p-3 border border-richblack-100
-                          transition-all duration-200"
+                        className="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
+                         group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
+                         pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto
+                         absolute left-1/2 -translate-x-1/2 top-full mt-2 z-30 w-[320px]
+                         rounded-lg bg-richblack-700 border border-richblack-700 p-3 shadow-[0_10px_30px_rgba(2,6,23,0.6)]
+                         transition-all duration-250 ease-[cubic-bezier(.2,.9,.2,1)]"
                         role="menu"
                       >
-                        <div className="absolute left-1/2 -translate-x-1/2 -top-2 h-4 w-4 rotate-45 bg-richblack-5 border-t border-l border-richblack-100" />
+                        {/* triangle pointer */}
+                        <div className="absolute left-1/2 -translate-x-1/2 -top-2 w-4 h-4 rotate-45 bg-richblack-700 border-t border-l border-richblack-700" />
+
                         {subLinks.length > 0 ? (
                           <div className="flex flex-col gap-2">
                             {subLinks.map((el, idx) => (
@@ -97,15 +102,18 @@ const Navbar = () => {
                                 key={idx}
                                 to={`/catalog/${encodeURIComponent(el.name)}`}
                                 onClick={handleNavigate}
+                                className="block rounded-md py-3 px-4 text-richblack-5 hover:bg-richblack-800 hover:text-yellow-25 transition-colors duration-150"
+                                role="menuitem"
+                                tabIndex={0}
                               >
-                                <span className="block text-richblack-900 hover:bg-richblack-50 rounded-lg py-3 px-4 text-sm font-semibold transition-all duration-150">
+                                <span className="text-sm font-semibold">
                                   {el.name}
                                 </span>
                               </Link>
                             ))}
                           </div>
                         ) : (
-                          <div className="text-richblack-900 p-4 text-center text-sm">
+                          <div className="text-richblack-400 p-4 text-center text-sm">
                             No Categories Found
                           </div>
                         )}
@@ -114,14 +122,15 @@ const Navbar = () => {
                   ) : (
                     <Link to={link.path} onClick={handleNavigate}>
                       <span
-                        className={`group relative transition-all duration-200 ${
-                          location.pathname === link.path
-                            ? "text-yellow-25"
-                            : ""
-                        }`}
+                        className={`group relative transition-all duration-200 px-1 py-1 inline-block
+                ${
+                  location.pathname === link.path
+                    ? "text-yellow-25"
+                    : "text-richblack-25 hover:text-yellow-25"
+                }`}
                       >
                         {link.title}
-                        <span className="absolute hidden group-hover:block h-[2px] w-full bottom-[-5px] bg-yellow-50 transition-all duration-200" />
+                        <span className="absolute hidden group-hover:block h-[2px] w-full bottom-[-6px] bg-yellow-50 transition-all duration-200" />
                       </span>
                     </Link>
                   )}
@@ -203,7 +212,6 @@ const Navbar = () => {
               )}
             </button>
           </div>
-
         </div>
       </div>
 

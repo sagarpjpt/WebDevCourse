@@ -6,6 +6,8 @@ import { profile, auth } from "../../../services/apis";
 import { logout } from "../../../redux/slices/profileSlice";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { VscDashboard } from "react-icons/vsc"
+import { Link } from "react-router-dom";
 
 const ProfileDropDown = () => {
   const [profileIcon, setProfileIcon] = useState();
@@ -71,6 +73,15 @@ const ProfileDropDown = () => {
           className="absolute right-0 mt-3 w-40 bg-richblack-800 border border-richblack-700 
           rounded-lg shadow-lg py-2 z-50 animate-fadeIn"
         >
+          {/* dashboard link */}
+          <Link to="/dashboard/my-profile" onClick={() => setOpen(false)}>
+            <div className="flex w-full items-center gap-3 px-4 py-2 text-sm text-richblack-25 hover:bg-richblack-700 hover:text-yellow-50 transition-all duration-150">
+              <VscDashboard className="text-lg" />
+              Dashboard
+            </div>
+          </Link>
+
+          {/* logout btn */}
           <button
             onClick={logoutUser}
             className="flex w-full items-center gap-3 px-4 py-2 text-sm text-richblack-25 hover:bg-richblack-700 hover:text-yellow-50 transition-all duration-150"

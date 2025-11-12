@@ -14,11 +14,21 @@ import Spinner from './components/common/Spinner.jsx'
 import PublicRoute from "./components/core/Auth/PublicRoute.jsx";
 import VerifyEmailRoute from "./components/core/Auth/VerifyEmailRoute.jsx";
 import About from "./pages/About.jsx";
+import Rateus from "./pages/Rateus.jsx";
+import Project from "./pages/Project.jsx";
 
 const App = () => {
 
   const dispatch = useDispatch()
   const [authChecking, setAuthChecking] = useState(true)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    // simulating a loading time
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
   useEffect(() => {
     const fetchMe = async () => {
@@ -38,7 +48,7 @@ const App = () => {
     fetchMe()
   }, [dispatch])
 
-  if(authChecking) {
+  if(authChecking || loading) {
     return <Spinner />
   }
 
@@ -65,6 +75,8 @@ const App = () => {
         } />
         <Route path='/contact' element={<Contact />} />
         <Route path="/about" element={<About />} />
+        <Route path="/rateus" element={<Rateus />} />
+        <Route path="/projects" element={<Project />} />
       </Routes>
     </div>
   );

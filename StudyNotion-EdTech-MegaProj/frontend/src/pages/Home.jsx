@@ -10,6 +10,7 @@ import TimeLineSection from "../components/core/HomePage/TimeLineSection.jsx";
 import LearningLanguageSection from "../components/core/HomePage/LearningLanguageSection.jsx";
 import InstructorSection from '../components/core/HomePage/InstructorSection.jsx'
 import ExploreMore from "../components/core/HomePage/ExploreMore.jsx";
+import ReviewSlider from "../components/common/ReviewSlider.jsx";
 
 const Home = () => {
   return (
@@ -193,6 +194,7 @@ const Home = () => {
             <h2 className="text-center text-4xl font-semibold mt-10">Review from Other Learners</h2>
 
             {/* review slider */}
+            <ReviewSlider />
 
       </div>
 

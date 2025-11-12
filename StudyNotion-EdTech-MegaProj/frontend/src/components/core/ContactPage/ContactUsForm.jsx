@@ -15,7 +15,6 @@ const ContactUsForm = () => {
     formState: { errors, isSubmitSuccessful },
   } = useForm();
 
-  // Example submit (uncomment when endpoint ready)
   const submitContactForm = async (data) => {
     try {
       setLoading(true);
