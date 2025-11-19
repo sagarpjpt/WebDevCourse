@@ -8,22 +8,37 @@ const dotenv = require("dotenv");
 exports.updateProfile = async (req, res) => {
   try {
     // fetch data from req
-    const { gender, dateOfBirth="", about="", contactNumber } = req.body;
+    const { firstName, lastName, gender, dateOfBirth="", about="", contactNumber } = req.body;
 
     // user id from auth middleware
     const userId = req.user.userId;
 
     // validation
-    if (!userId || !gender || !contactNumber) {
+    if (!userId || !gender || !contactNumber || !about) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
       });
     }
 
+
     // find profile id from user
     let user = await User.findById(userId);
     const profileId = user.additionalDetails;
+
+    // update first name and lastname if provided
+    if(firstName) {
+      await User.findByIdAndUpdate(
+        user,
+        {firstName}
+      )
+    }
+    if(lastName) {
+      await User.findByIdAndUpdate(
+        user,
+        {lastName}
+      )
+    }
 
     // update profile
     const updatedProfile = await Profile.findByIdAndUpdate(
@@ -60,6 +75,11 @@ exports.deleteAccount = async (req, res) => {
         message: "User ID is required",
       });
     }
+
+    // clear token cookie
+    res.clearCookie("token", {
+      httpOnly: true
+    })
 
     // delete profile
     const user = await User.findById(userId);
@@ -153,7 +173,7 @@ exports.updateDP = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Display picture updated successfully",
-      imageUrl: user.image
+      imageUrl: user.image,
     });
   } catch (error) {
     console.error("Error in updateDP:", error);

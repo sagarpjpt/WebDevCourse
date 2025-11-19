@@ -4,7 +4,7 @@ const router = express.Router();
 // import controllers fn
 const {createCategory, getAllCategory, categoryPageDetails} = require('../controllers/Category');
 const { auth, isAdmin, isInstructor, isStudent } = require('../middlewares/auth');
-const { createCourse, getAllCourses, getCourseDetails } = require('../controllers/Course');
+const { createCourse, editCourse, getAllCourses, getCourseDetails, getAllCoursesOfInstructor } = require('../controllers/Course');
 const { createSection, updateSection, deleteSection } = require('../controllers/Section');
 const {createSubSection, deleteSubSection, updateSubSection} = require('../controllers/SubSection');
 const { createRatingAndReview, getAverageRating, getAllRatingsAndReviews, getAllRatingsAndReviewsByCourseId } = require('../controllers/RatingAndReview');
@@ -21,11 +21,17 @@ router.get('/category-page-details/:categoryId', auth, categoryPageDetails);
 // router to create course
 router.post('/create-course', auth, isInstructor, createCourse);
 
+// router to edit course
+router.put('/edit-course', auth, isInstructor, editCourse)
+
 // router to get course details
 router.get('/course/:courseId', auth, getCourseDetails);
 
 // router to get all courses
 router.get('/get-all-courses', auth, getAllCourses);
+
+// router to get all courses of an instructor
+router.get('/instructor-courses-details', auth, isInstructor, getAllCoursesOfInstructor)
 
 // router to add section to course
 router.post('/add-section', auth, isInstructor, createSection);

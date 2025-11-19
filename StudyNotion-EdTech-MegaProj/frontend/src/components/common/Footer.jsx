@@ -12,7 +12,7 @@ import {
   FaInstagram,
 } from "react-icons/fa6";
 
-const BottomFooter = ["Privacy Policy", "Cookie Policy", "Terms"];
+const BottomFooter = ["Privacy Policy", "Cookie Policy", "Terms and Conditions"];
 const Resources = [
   "Articles",
   "Blog",
@@ -30,7 +30,7 @@ const Community = [
   { name: "Events", link: "events" },
   {
     name: "Contribute",
-    link: "https://github.com/Muskansahuincredible/StudyNotion-An-Online-Education-Platform",
+    link: "https://github.com/sagarpjpt/WebDevCourse/tree/master/StudyNotion-EdTech-MegaProj",
     external: true,
   },
 ];

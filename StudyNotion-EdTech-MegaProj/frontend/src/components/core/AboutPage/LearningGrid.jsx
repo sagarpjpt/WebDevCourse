@@ -55,7 +55,7 @@ const LearningGrid = () => {
             : card.order % 2 === 0
             ? "bg-richblack-800"
             : "bg-transparent";
-        const cardHeightClass = "max-h-[260px]";
+        const cardHeightClass = "max-h-[260px] lg:min-h-[260px]";
         const colSpanClass = i === 0 ? "xl:col-span-2" : "";
         const colStartClass = card.order === 3 ? "xl:col-start-2" : "";
 

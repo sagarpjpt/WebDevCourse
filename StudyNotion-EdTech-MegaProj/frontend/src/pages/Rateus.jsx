@@ -53,13 +53,13 @@ function RateUsComponent({ previousContent }) {
           <h2 className="text-3xl font-bold text-center text-richblack-5 mb-3">
             We Value Your Feedback 💬
           </h2>
-          <p className="text-center text-richblack-300 text-sm md:text-base mb-8 leading-relaxed">
+          <p className="text-center text-richblack-300 text-sm md:text-base mb-3 leading-relaxed">
             Tell us how your experience has been. Your feedback helps us grow
             and improve your learning journey.
           </p>
 
           {/* Star Rating */}
-          <div className="flex justify-center mb-5">
+          <div className="flex justify-center mb-2">
             {[...Array(5)].map((_, index) => {
               const starIndex = index + 1;
               return (
@@ -74,7 +74,7 @@ function RateUsComponent({ previousContent }) {
                   onMouseOut={handleMouseOut}
                   onClick={() => handleClick(starIndex)}
                 >
-                  &#9733;
+                  &#9733; {/* star symbol */}
                 </span>
               );
             })}
@@ -101,7 +101,7 @@ function RateUsComponent({ previousContent }) {
           />
 
           {errorFeedback && (
-            <label className="text-xs text-yellow-100 mt-2 block text-center">
+            <label className="text-xs text-yellow-100 mt-1 block text-center">
               *Please enter feedback.
             </label>
           )}

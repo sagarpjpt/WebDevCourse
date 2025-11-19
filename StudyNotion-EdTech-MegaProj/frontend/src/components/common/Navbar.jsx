@@ -48,7 +48,7 @@ const Navbar = () => {
   return (
     <header className="bg-transparent">
       <div className="flex h-14 items-center border-b-2 border-b-richblack-700">
-        <div className="flex w-10/12 max-w-maxContent mx-auto items-center justify-between">
+        <div className="flex w-11/12 lg:w-10/12 max-w-maxContent mx-auto items-center justify-between">
           {/* logo */}
           <Link to={"/"} onClick={handleNavigate} className="flex items-center">
             <img
@@ -122,7 +122,7 @@ const Navbar = () => {
                   ) : (
                     <Link to={link.path} onClick={handleNavigate}>
                       <span
-                        className={`group relative transition-all duration-200 px-1 py-1 inline-block
+                        className={`flex justify-center items-center group relative transition-all duration-200 px-1 py-1
                 ${
                   location.pathname === link.path
                     ? "text-yellow-25"
@@ -159,12 +159,12 @@ const Navbar = () => {
             {!user ? (
               <>
                 <Link to="/login" onClick={handleNavigate}>
-                  <button className="px-5 py-2 text-white border-richblack-700 bg-richblack-800 rounded-md text-sm cursor-pointer">
+                  <button className="px-5 py-2 bg-richblack-800 border border-richblack-700 rounded-md text-sm font-semibold text-richblack-5 hover:bg-richblack-700 focus:outline-none focus:ring-2 focus:ring-blue-200 transition cursor-pointer">
                     Log In
                   </button>
                 </Link>
                 <Link to="/signup" onClick={handleNavigate}>
-                  <button className="px-5 py-2 text-white border-richblack-700 bg-richblack-800 rounded-md text-sm cursor-pointer">
+                  <button className="px-5 py-2 bg-yellow-50 rounded-md text-sm font-semibold text-richblack-900 hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-blue-200 transition cursor-pointer">
                     Sign Up
                   </button>
                 </Link>
@@ -324,7 +324,7 @@ const Navbar = () => {
               {!user && (
                 <div className="flex gap-2">
                   <Link to="/login" onClick={handleNavigate} className="flex-1">
-                    <button className="w-full px-5 py-2 text-white border-richblack-700 bg-richblack-800 rounded-md text-sm">
+                    <button className="w-full px-5 py-2 bg-richblack-800 border border-richblack-700 rounded-md text-sm font-semibold text-richblack-5 hover:bg-richblack-700 focus:outline-none focus:ring-2 focus:ring-blue-200 transition">
                       Log In
                     </button>
                   </Link>
@@ -333,7 +333,7 @@ const Navbar = () => {
                     onClick={handleNavigate}
                     className="flex-1"
                   >
-                    <button className="w-full px-5 py-2 text-white border-richblack-700 bg-richblack-800 rounded-md text-sm">
+                    <button className="w-full px-5 py-2 bg-yellow-50 rounded-md text-sm font-semibold text-richblack-900 hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-blue-200 transition">
                       Sign Up
                     </button>
                   </Link>

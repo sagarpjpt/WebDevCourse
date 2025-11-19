@@ -175,7 +175,7 @@ using crypto.randomUUID()
 
 3--> create contact route and contactUs controller in backend in respective folders
 
-------------FRONT-END-CLASS06------------------
+------------FRONT-END-CLASS07------------------
 
 1--> mounting at app.jsx and creating rateus page & project page
 
@@ -183,3 +183,16 @@ using crypto.randomUUID()
     framer-motion is a popular React library for animations and transitions.
 
 3--> add a dashboard button in profile drop down which links to /dashboard/profile
+
+------------FRONT-END-CLASS08------------------
+
+1--> adding privacypolicy page and t&c page
+    npm i styled-components
+    styled-components is a CSS-in-JS library for React.
+    It allows you to write actual CSS inside JavaScript and attach the styles directly to components.
+
+2-->Mounting & adding Dashboard page
+    npm install chart.js react-chartjs-2
+    npm i react-dropzone
+    npm i react-player
+    npm install react-super-responsive-table

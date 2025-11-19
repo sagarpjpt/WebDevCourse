@@ -1,20 +1,27 @@
-// src/components/PrivateRoute.jsx
-import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import toast from "react-hot-toast";
+import { Navigate, useLocation } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
-function PrivateRoute({ children }) {
+export default function PrivateRoute({ children }) {
   const { user } = useSelector((state) => state.profile);
+  const location = useLocation();
 
-  if (user) {
-    return children;
-  } else {
-    toast.error("Please log in to access this page");
-    return <Navigate to="/login" replace />;
-  }
+  useEffect(() => {
+    const cameFromLogout = localStorage.getItem("logoutEvent");
+    if (!user && !cameFromLogout) {
+      toast.error("Please Log In To Access");
+    }
+    // clear flag
+    localStorage.removeItem("logoutEvent");
+  }, [user]);
+
+  if (user) return children;
+
+  // keep the location so you can redirect back after login (optional)
+  return <Navigate to="/login" state={{ from: location }} replace />;
 }
 
-export default PrivateRoute;
 
 
 // replace prevents the user from going back to the protected route with browser back button.
