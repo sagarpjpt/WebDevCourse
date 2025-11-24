@@ -183,3 +183,39 @@ exports.updateDP = async (req, res) => {
     });
   }
 };
+
+exports.getInstructorDashboardData = async (req, res) => {
+  try {
+    const instructorId = req.user.userId;
+
+    // Find all courses created by this instructor
+    const courses = await Course.find({ instructor: instructorId })
+      .populate("studentsEnrolled")
+      .exec();
+
+    // Prepare structured dashboard data
+    const dashboardData = courses.map(course => {
+      const totalStudentsEnrolled = course.studentsEnrolled.length;
+      const totalAmountGenerated = totalStudentsEnrolled * course.price;
+
+      return {
+        courseId: course._id,
+        courseName: course.courseName,
+        totalStudentsEnrolled,
+        totalAmountGenerated,
+      };
+    });
+
+    return res.status(200).json({
+      success: true,
+      data: dashboardData,
+    });
+
+  } catch (error) {
+    console.error("Error in getInstructorDashboardData:", error);
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

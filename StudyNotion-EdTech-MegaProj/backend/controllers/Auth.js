@@ -276,10 +276,15 @@ exports.changePassword = async (req, res) => {
 };
 
 // verify cookie
-exports.meController = (req, res) => {
+exports.meController = async (req, res) => {
   if(req.user) {
+    const userData = await User.findById(req.user.userId)
     return res.json({success: true,
-      user: req.user
+      user: {
+        ...req.user,
+        firstName: userData.firstName,
+        lastName: userData.lastName
+      }
     })
   }
   return res.status(401).json({success: false, message: "Not Authenticated"})

@@ -2,6 +2,7 @@ const SubSection = require("../models/SubSection");
 const Section = require("../models/Section");
 const { uploadVideoToCloudinary } = require("../utils/videoUploader");
 require('dotenv').config();
+const CourseProgress = require('../models/CourseProgress')
 
 // create subsection
 
@@ -145,3 +146,35 @@ exports.updateSubSection = async (req, res) => {
     });
   }
 };
+
+// mark lec completed
+exports.markLectureCompleted = async (req, res) => {
+  try {
+    const { courseId, lectureId } = req.body;
+    const userId = req.user.userId;
+
+    let progress = await CourseProgress.findOne({ userId, courseId });
+
+    if (!progress) {
+      progress = await CourseProgress.create({
+        userId,
+        courseId,
+        completedVideos: [lectureId],
+      });
+      return res.json({ success: true, message: "Lecture marked completed" });
+    }
+
+    if (!progress.completedVideos.includes(lectureId)) {
+      progress.completedVideos.push(lectureId);
+      await progress.save();
+    }
+
+    return res.json({
+      success: true,
+      message: "Lecture marked completed",
+      completedVideos: progress.completedVideos,
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, error: error.message });
+  }
+}

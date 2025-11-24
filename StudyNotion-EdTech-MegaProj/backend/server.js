@@ -5,6 +5,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const {cloudinaryConnect} = require('./config/cloudinary');
 const fileUpload = require('express-fileupload');
+const bodyParser = require("body-parser");
 
 // routes
 const userRoutes = require('./routes/userRoutes');
@@ -19,7 +20,18 @@ dotenv.config();
 // initialize express app
 const app = express();
 
+//  RAW WEBHOOK MUST COME FIRST 
+const { verifySignature } = require('./controllers/Payments')
+// webhook or verifySignature
+app.post(
+  "/api/v1/payments/webhook",
+  bodyParser.raw({ type: "application/json" }),
+  verifySignature
+);
+
 // middleware
+
+// now apply json parser globally
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
@@ -36,8 +48,8 @@ app.use(fileUpload({
 app.use('/api/v1/auth', userRoutes);
 app.use('/api/v1/profiles', profileRoutes);
 app.use('/api/v1/courses', courseRoutes);
-app.use('/api/v1/payments', paymentRoutes);
 app.use("/api/v1/reach", contactUsRoute);
+app.use('/api/v1/payments', paymentRoutes);
 
 // Connect to MongoDB
 connectDB();

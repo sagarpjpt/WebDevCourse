@@ -84,39 +84,48 @@ const Navbar = () => {
 
                       {/* Dropdown panel (visible on hover or keyboard focus) */}
                       <div
-                        className="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
-                         group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
-                         pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto
-                         absolute left-1/2 -translate-x-1/2 top-full mt-2 z-30 w-[320px]
-                         rounded-lg bg-richblack-700 border border-richblack-700 p-3 shadow-[0_10px_30px_rgba(2,6,23,0.6)]
-                         transition-all duration-250 ease-[cubic-bezier(.2,.9,.2,1)]"
+                        className="invisible opacity-0 translate-y-2 
+                        group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
+                        group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
+                        pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto
+                        absolute left-1/2 -translate-x-1/2 top-full mt-2 z-30 w-[320px]
+                        bg-richblack-700 border border-richblack-700 rounded-lg shadow-[0_10px_30px_rgba(2,6,23,0.6)]
+                        transition-all duration-250 ease-[cubic-bezier(.2,.9,.2,1)]"
                         role="menu"
                       >
-                        {/* triangle pointer */}
-                        <div className="absolute left-1/2 -translate-x-1/2 -top-2 w-4 h-4 rotate-45 bg-richblack-700 border-t border-l border-richblack-700" />
+                        {/* Triangle pointer (always visible, never clipped) */}
+                        <div
+                          className="absolute left-1/2 -translate-x-1/2 -top-2 
+                          w-4 h-4 rotate-45 
+                          bg-richblack-700 border-t border-l border-richblack-700"
+                        />
 
-                        {subLinks.length > 0 ? (
-                          <div className="flex flex-col gap-2">
-                            {subLinks.map((el, idx) => (
-                              <Link
-                                key={idx}
-                                to={`/catalog/${encodeURIComponent(el.name)}`}
-                                onClick={handleNavigate}
-                                className="block rounded-md py-3 px-4 text-richblack-5 hover:bg-richblack-800 hover:text-yellow-25 transition-colors duration-150"
-                                role="menuitem"
-                                tabIndex={0}
-                              >
-                                <span className="text-sm font-semibold">
-                                  {el.name}
-                                </span>
-                              </Link>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="text-richblack-400 p-4 text-center text-sm">
-                            No Categories Found
-                          </div>
-                        )}
+                        {/* Scrollable content wrapper */}
+                        <div className="max-h-[350px] overflow-auto p-3 rounded-lg">
+                          {subLinks.length > 0 ? (
+                            <div className="flex flex-col gap-2">
+                              {subLinks.map((el, idx) => (
+                                <Link
+                                  key={idx}
+                                  to={`/catalog/${encodeURIComponent(el.name)}`}
+                                  onClick={handleNavigate}
+                                  className="block rounded-md py-3 px-4 
+                       text-richblack-5 hover:bg-richblack-800 hover:text-yellow-25 
+                       transition-colors duration-150"
+                                  role="menuitem"
+                                >
+                                  <span className="text-sm font-semibold">
+                                    {el.name}
+                                  </span>
+                                </Link>
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="text-richblack-400 p-4 text-center text-sm">
+                              No Categories Found
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   ) : (

@@ -9,7 +9,7 @@ import Spinner from "../../../common/Spinner";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 
-const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"];
+const genders = ["Male", "Female", "Prefer not to say", "Other"];
 
 export default function EditProfile({ user, setUser }) {
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ export default function EditProfile({ user, setUser }) {
                 type="text"
                 id="firstName"
                 placeholder="Enter first name"
-                className="form-style bg-richblack-700 border border-richblack-600 focus:border-yellow-50"
+                className="bg-richblack-700 text-richblack-5 placeholder-richblack-400 rounded-md p-3 border border-richblack-700 focus:outline-none focus:ring-2 focus:ring-blue-200 transition"
                 {...register("firstName", { required: true })}
                 defaultValue={user?.firstName}
               />
@@ -85,7 +85,7 @@ export default function EditProfile({ user, setUser }) {
                 type="text"
                 id="lastName"
                 placeholder="Enter last name"
-                className="form-style bg-richblack-700 border border-richblack-600 focus:border-yellow-50"
+                className="bg-richblack-700 text-richblack-5 placeholder-richblack-400 rounded-md p-3 border border-richblack-700 focus:outline-none focus:ring-2 focus:ring-blue-200 transition"
                 {...register("lastName", { required: true })}
                 defaultValue={user?.lastName}
               />
@@ -110,7 +110,7 @@ export default function EditProfile({ user, setUser }) {
               <input
                 type="date"
                 id="dateOfBirth"
-                className="form-style bg-richblack-700 border border-richblack-600 focus:border-yellow-50"
+                className="bg-richblack-700 text-richblack-5 placeholder-richblack-400 rounded-md p-3 border border-richblack-700 focus:outline-none focus:ring-2 focus:ring-blue-200 transition"
                 {...register("dateOfBirth", {
                   required: true,
                   max: new Date().toISOString().split("T")[0],
@@ -131,7 +131,7 @@ export default function EditProfile({ user, setUser }) {
               </label>
               <select
                 id="gender"
-                className="form-style bg-richblack-700 border border-richblack-600 focus:border-yellow-50"
+                className="bg-richblack-700 text-richblack-5 placeholder-richblack-400 rounded-md p-3 border border-richblack-700 focus:outline-none focus:ring-2 focus:ring-blue-200 transition"
                 {...register("gender", { required: true })}
                 defaultValue={user?.additionalDetails?.gender}
               >
@@ -158,7 +158,7 @@ export default function EditProfile({ user, setUser }) {
                 type="tel"
                 id="contactNumber"
                 placeholder="Enter contact number"
-                className="form-style bg-richblack-700 border border-richblack-600 focus:border-yellow-50"
+                className="bg-richblack-700 text-richblack-5 placeholder-richblack-400 rounded-md p-3 border border-richblack-700 focus:outline-none focus:ring-2 focus:ring-blue-200 transition"
                 {...register("contactNumber", {
                   required: true,
                   maxLength: 12,
@@ -182,7 +182,7 @@ export default function EditProfile({ user, setUser }) {
                 type="text"
                 id="about"
                 placeholder="Enter bio details"
-                className="form-style bg-richblack-700 border border-richblack-600 focus:border-yellow-50"
+                className="bg-richblack-700 text-richblack-5 placeholder-richblack-400 rounded-md p-3 border border-richblack-700 focus:outline-none focus:ring-2 focus:ring-blue-200 transition"
                 {...register("about", { required: true })}
                 defaultValue={user?.additionalDetails?.about}
               />

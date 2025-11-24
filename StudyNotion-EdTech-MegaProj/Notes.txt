@@ -194,5 +194,37 @@ using crypto.randomUUID()
 2-->Mounting & adding Dashboard page
     npm install chart.js react-chartjs-2
     npm i react-dropzone
-    npm i react-player
+    npm i react-player OR USE <video></video> tag we used video tag
     npm install react-super-responsive-table
+    npm install @ramonak/react-progress-bar
+    npm i react-rating-stars-component
+    npm install plyr plyr-react
+
+------------FRONT-END-CLASS09------------------
+
+1--> adding catalog, course and view course page page nad  and mounting it
+    npm i swiper
+    npm i react-markdown
+    npm i copy-to-clipboard
+
+---------Payment integration---------
+
+1. Webhook URL for Razorpay Dashboard (LOCALHOST)
+
+Razorpay cannot call your localhost directly, so you have two options:
+
+Use ngrok --> Expose your local server:
+    ngrok http 4000 or 
+    npx ngrok http 4000
+
+need to save authentication token by login in ngrok and open ngrok.exe and paste command there to svae token
+
+will get something like:
+https://a1b2c3d4.ngrok-free.app
+
+Now your webhook URL becomes:
+https://a1b2c3d4.ngrok-free.app/api/v1/payments/webhook
+
+// Razorpay needs raw body for signature validation ie /api/v1/payments/webhook
+
+

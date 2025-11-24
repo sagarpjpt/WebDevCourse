@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { FiUploadCloud } from "react-icons/fi"
 import { useSelector } from "react-redux"
-import ReactPlayer from "react-player"
 
 export default function Upload({
   name,
@@ -37,10 +36,15 @@ export default function Upload({
   })
 
   const previewFile = (file) => {
+  if (video) {
+    const videoURL = URL.createObjectURL(file)
+    setPreviewSource(videoURL)
+  } else {
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onloadend = () => setPreviewSource(reader.result)
   }
+}
 
   useEffect(() => {
     register(name, { required: true })
@@ -74,13 +78,18 @@ export default function Upload({
                 className="max-h-[300px] w-full rounded-md object-cover"
               />
             ) : (
-              <ReactPlayer
-                url={previewSource}
+              // <ReactPlayer
+              //   url={previewSource}
+              //   controls
+              //   width="100%"
+              //   height="auto"
+              //   className="rounded-md"
+              // />
+              <video
+                src={previewSource}
                 controls
-                width="100%"
-                height="auto"
-                className="rounded-md"
-              />
+                className="w-full rounded-md max-h-[350px]"
+              ></video>
             )}
 
             {!viewData && (

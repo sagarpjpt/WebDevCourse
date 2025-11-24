@@ -60,7 +60,13 @@ exports.categoryPageDetails = async (req, res) => {
 
         // get course details based on categoryId
         const categoryDetails = await Tag.findById(categoryId)
-            .populate("course").exec();
+            .populate({
+    path: "course",
+    populate: {
+      path: "instructor",
+      model: "User",   // replace if your instructor model name is different
+    },
+  }).exec();
 
         // validate categoryDetails
         if(!categoryDetails){
@@ -72,13 +78,19 @@ exports.categoryPageDetails = async (req, res) => {
 
         // get courses for different categories
         const differentCategory = await Tag.find({_id: {$ne: categoryId}}) // fetch all categories except current category
-            .populate("course").exec();
+            .populate({
+    path: "course",
+    populate: {
+      path: "instructor",
+      model: "User",   // replace if your instructor model name is different
+    },
+  }).exec();
 
         // get top selling courses
         const courses = await Course.find({})
             .sort({studentsEnrolled: -1}) // sort by number of students enrolled in descending order
             .limit(10) // limit to top 10 courses
-            .exec();
+            .populate("instructor").exec();
 
         // return response
         return res.status(200).json({

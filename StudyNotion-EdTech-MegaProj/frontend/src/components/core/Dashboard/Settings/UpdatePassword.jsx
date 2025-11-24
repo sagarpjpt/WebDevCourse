@@ -70,14 +70,14 @@ export default function UpdatePassword() {
                 type={showOldPassword ? "text" : "password"}
                 id="oldPassword"
                 placeholder="Enter current password"
-                className="form-style bg-richblack-700 border border-richblack-600 focus:border-yellow-50"
+                className="bg-richblack-700 text-richblack-5 placeholder-richblack-400 rounded-md p-3 border border-richblack-700 focus:outline-none focus:ring-2 focus:ring-blue-200 transition"
                 {...register("oldPassword", { required: true })}
               />
 
               {/* EYE ICON */}
               <span
                 onClick={() => setShowOldPassword((prev) => !prev)}
-                className="absolute right-3 top-[28px] cursor-pointer"
+                className="absolute right-3 top-1/2 -translatey-y-[50%] cursor-pointer"
               >
                 {showOldPassword ? (
                   <AiOutlineEyeInvisible fontSize={22} fill="#AFB2BF" />
@@ -87,7 +87,7 @@ export default function UpdatePassword() {
               </span>
 
               {errors.oldPassword && (
-                <span className="text-xs text-yellow-100">
+                <span className="text-xs text-pink-300">
                   Please enter your current password.
                 </span>
               )}
@@ -106,14 +106,14 @@ export default function UpdatePassword() {
                 type={showNewPassword ? "text" : "password"}
                 id="newPassword"
                 placeholder="Enter new password"
-                className="form-style bg-richblack-700 border border-richblack-600 focus:border-yellow-50"
+                className="bg-richblack-700 text-richblack-5 placeholder-richblack-400 rounded-md p-3 border border-richblack-700 focus:outline-none focus:ring-2 focus:ring-blue-200 transition"
                 {...register("newPassword", { required: true })}
               />
 
               {/* EYE ICON */}
               <span
                 onClick={() => setShowNewPassword((prev) => !prev)}
-                className="absolute right-3 top-[28px] cursor-pointer"
+                className="absolute right-3 top-1/2 -translatey-y-[50%] cursor-pointer"
               >
                 {showNewPassword ? (
                   <AiOutlineEyeInvisible fontSize={22} fill="#AFB2BF" />
@@ -123,7 +123,7 @@ export default function UpdatePassword() {
               </span>
 
               {errors.newPassword && (
-                <span className="text-xs text-yellow-100">
+                <span className="text-xs text-pink-300">
                   Please enter your new password.
                 </span>
               )}
@@ -144,14 +144,14 @@ export default function UpdatePassword() {
                 type={showConfirmPassword ? "text" : "password"}
                 id="confirmNewPassword"
                 placeholder="Confirm new password"
-                className="form-style bg-richblack-700 border border-richblack-600 focus:border-yellow-50"
+                className="bg-richblack-700 text-richblack-5 placeholder-richblack-400 rounded-md p-3 border border-richblack-700 focus:outline-none focus:ring-2 focus:ring-blue-200 transition"
                 {...register("confirmNewPassword", { required: true })}
               />
 
               {/* EYE ICON */}
               <span
                 onClick={() => setShowConfirmPassword((prev) => !prev)}
-                className="absolute right-3 top-[28px] cursor-pointer"
+                className="absolute right-3 top-1/2 -translatey-y-[50%] cursor-pointer"
               >
                 {showConfirmPassword ? (
                   <AiOutlineEyeInvisible fontSize={22} fill="#AFB2BF" />
@@ -161,7 +161,7 @@ export default function UpdatePassword() {
               </span>
 
               {errors.confirmNewPassword && (
-                <span className="text-xs text-yellow-100">
+                <span className="text-xs text-pink-300">
                   Please confirm your new password.
                 </span>
               )}
@@ -174,8 +174,7 @@ export default function UpdatePassword() {
           <button
             type="button"
             onClick={() => navigate("/dashboard/my-profile")}
-            className="rounded-md bg-richblack-700 px-5 py-2 text-richblack-100 
-                 font-semibold hover:bg-richblack-600 transition-all"
+            className="rounded-md bg-richblack-700 px-5 py-2 text-richblack-100 font-semibold hover:bg-richblack-600 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all"
           >
             Cancel
           </button>

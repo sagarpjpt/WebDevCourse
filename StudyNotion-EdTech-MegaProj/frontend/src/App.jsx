@@ -25,6 +25,14 @@ import Settings from "./components/core/Dashboard/Settings/Settings.jsx";
 import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor.jsx";
 import AddCourse from "./components/core/Dashboard/AddCourse/AddCourse.jsx";
 import MyCourses from "./components/core/Dashboard/MyCourses.jsx";
+import EditCourse from "./components/core/Dashboard/EditCourse/EditCourse.jsx";
+import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses.jsx";
+import Cart from "./components/core/Dashboard/Cart/Cart.jsx";
+import Error from "./pages/Error.jsx";
+import ViewCourse from "./pages/ViewCourse.jsx";
+import VideoDetails from "./components/core/ViewCourse/VideoDetails.jsx";
+import Catalog from "./pages/Catalog.jsx";
+import CourseDetails from "./pages/CourseDetails.jsx";
 
 const App = () => {
 
@@ -107,7 +115,7 @@ const App = () => {
         >
           <Route path="dashboard/my-profile" element={<MyProfile />} />
           <Route path="dashboard/settings" element={<Settings />} />
-          {/* {user?.role === "Student" && (
+          {user?.role === "Student" && (
             <>
               <Route path="dashboard/cart" element={<Cart />} />
               <Route
@@ -115,19 +123,38 @@ const App = () => {
                 element={<EnrolledCourses />}
               />
             </>
-          )} */}
+          )}
           {user?.role === "Instructor" && (
             <>
               <Route path="dashboard/instructor" element={<Instructor />} />
               <Route path="dashboard/add-course" element={<AddCourse />} />
               <Route path="dashboard/my-courses" element={<MyCourses />} />
-              {/* <Route
+              <Route
                 path="dashboard/edit-course/:courseId"
                 element={<EditCourse />}
-              /> */}
+              />
             </>
           )}
         </Route>
+        <Route
+          element={
+            <PrivateRoute>
+              <ViewCourse />
+            </PrivateRoute>
+          }
+        >
+          {user?.role === "Student" && (
+            <>
+              <Route
+                path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+                element={<VideoDetails />}
+              />
+            </>
+          )}
+        </Route>
+        <Route path="catalog/:catalogName" element={<Catalog />} />
+        <Route path="courses/:courseId" element={<CourseDetails />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );

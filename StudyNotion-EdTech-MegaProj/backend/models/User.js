@@ -56,3 +56,7 @@ const userSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 module.exports = mongoose.model("User", userSchema)
+
+// we dont store courseProgress ids here as not needed now 
+// will store when we require:
+//Show all user’s course progress at once like for--> Analytics dashboards

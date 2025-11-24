@@ -1,6 +1,9 @@
 const Course = require("../models/Course");
 const Tag = require("../models/Category");
 const User = require("../models/User");
+const Section = require("../models/Section");
+const SubSection = require("../models/SubSection");
+const CourseProgress = require("../models/CourseProgress");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
 
 // create course
@@ -354,5 +357,172 @@ exports.getAllCoursesOfInstructor = async (req, res) => {
       message: "Failed to fetch courses",
       error: error.message,
     });
+  }
+};
+
+// delete a course of instructor
+exports.deleteCourse = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { courseId } = req.body;
+
+    if (!courseId) {
+      return res.status(400).json({
+        success: false,
+        message: "Course ID is required",
+      });
+    }
+
+    // Fetch course
+    const course = await Course.findById(courseId);
+
+    if (!course) {
+      return res.status(404).json({
+        success: false,
+        message: "Course not found",
+      });
+    }
+
+    // Ensure only instructor who created the course can delete it
+    if (course.instructor.toString() !== userId) {
+      return res.status(403).json({
+        success: false,
+        message: "You are not authorized to delete this course",
+      });
+    }
+
+    // 1️⃣ Remove course from instructor's courses array
+    await User.findByIdAndUpdate(course.instructor, {
+      $pull: { courses: courseId },
+    });
+
+    // 2️⃣ Remove course from category
+    await Tag.findByIdAndUpdate(course.category, {
+      $pull: { courses: courseId },
+    });
+
+    // 3️⃣ Remove course from students enrolled
+    await User.updateMany(
+      { _id: { $in: course.studentsEnrolled } },
+      { $pull: { courseProgress: courseId } }
+    );
+
+    // 4️⃣ Delete all sections + their subsections
+    const sections = await Section.find({ _id: { $in: course.courseContent } });
+
+    for (const section of sections) {
+      await SubSection.deleteMany({ _id: { $in: section.subSection } });
+    }
+
+    await Section.deleteMany({ _id: { $in: course.courseContent } });
+
+    // 5️⃣ Finally delete the course
+    await Course.findByIdAndDelete(courseId);
+
+    return res.status(200).json({
+      success: true,
+      message: "Course deleted successfully",
+    });
+
+  } catch (error) {
+    console.error("Delete course error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Error deleting course",
+      error: error.message,
+    });
+  }
+};
+
+// get student enrolled courses
+exports.getStudentEnrolledCourses = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+
+    // Fetch user & enrolled courses with deep population
+    const student = await User.findById(userId)
+      .populate({
+        path: "courses",
+        populate: {
+          path: "courseContent",
+          populate: { path: "subSection" }
+        }
+      })
+      .exec();
+
+    if (!student) {
+      return res.status(404).json({
+        success: false,
+        message: "Student not found",
+      });
+    }
+
+    // If user has no courses
+    const enrolledCourses = student.courses || [];
+
+    // FINAL RESULT ARRAY
+    const coursesWithProgress = [];
+
+    for (const course of enrolledCourses) {
+      // 1) Total number of lectures in this course
+      const totalLectures = course.courseContent?.reduce(
+        (acc, section) => acc + (section.subSection?.length || 0),
+        0
+      );
+
+      // 2) Fetch this student's progress document for this course
+      const progress = await CourseProgress.findOne({
+        userId,
+        courseId: course._id
+      });
+
+      // 3) Completed lecture count
+      const completedLectures = progress?.completedVideos?.length || 0;
+
+      // 4) Percentage
+      const progressPercentage =
+        totalLectures === 0
+          ? 0
+          : Math.floor((completedLectures / totalLectures) * 100);
+
+      // 5) Attach progress to course object
+      coursesWithProgress.push({
+        ...course.toObject(),
+        totalLectures,
+        completedLectures,
+        progressPercentage,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Enrolled courses fetched successfully",
+      courses: coursesWithProgress,
+    });
+
+  } catch (error) {
+    console.error("Error fetching enrolled courses:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error: " + error.message,
+    });
+  }
+};
+
+// update course progress
+
+exports.getCourseProgress = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { courseId } = req.params;
+
+    const progress = await CourseProgress.findOne({ userId, courseId });
+
+    res.json({
+      success: true,
+      completedVideos: progress?.completedVideos || [],
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
   }
 };

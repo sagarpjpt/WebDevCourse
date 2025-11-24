@@ -1,24 +1,24 @@
-import { useState } from "react"
-import { Chart, registerables } from "chart.js"
-import { Pie } from "react-chartjs-2"
+import { useState } from "react";
+import { Chart, registerables } from "chart.js";
+import { Pie } from "react-chartjs-2";
 
-Chart.register(...registerables)
+Chart.register(...registerables);
 
 export default function InstructorChart({ courses }) {
   // State to keep track of the currently selected chart
-  const [currChart, setCurrChart] = useState("students")
+  const [currChart, setCurrChart] = useState("students");
 
   // Function to generate random colors for the chart
   const generateRandomColors = (numColors) => {
-    const colors = []
+    const colors = [];
     for (let i = 0; i < numColors; i++) {
       const color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
         Math.random() * 256
-      )}, ${Math.floor(Math.random() * 256)})`
-      colors.push(color)
+      )}, ${Math.floor(Math.random() * 256)})`;
+      colors.push(color);
     }
-    return colors
-  }
+    return colors;
+  };
 
   // Data for the chart displaying student information
   const chartDataStudents = {
@@ -29,7 +29,7 @@ export default function InstructorChart({ courses }) {
         backgroundColor: generateRandomColors(courses.length),
       },
     ],
-  }
+  };
 
   // Data for the chart displaying income information
   const chartIncomeData = {
@@ -40,24 +40,51 @@ export default function InstructorChart({ courses }) {
         backgroundColor: generateRandomColors(courses.length),
       },
     ],
-  }
+  };
 
   // Options for the chart
   const options = {
+    responsive: true,
     maintainAspectRatio: false,
-  }
+    plugins: {
+      legend: {
+        display: true,
+        position: "bottom",
+        labels: {
+          color: "#E6EDF3",
+          padding: 12,
+          font: {
+            size: 13,
+            weight: "600",
+          },
+        },
+      },
+      tooltip: {
+        bodyFont: { size: 13 },
+        titleFont: { size: 14, weight: "600" },
+      },
+    },
+    layout: {
+      padding: {
+        top: 8,
+        bottom: 8,
+        left: 8,
+        right: 8,
+      },
+    },
+  };
 
   return (
     <div className="flex flex-1 flex-col gap-y-4 rounded-md bg-richblack-800 p-6">
       <p className="text-lg font-bold text-richblack-5">Visualize</p>
-      <div className="space-x-4 font-semibold">
+      <div className="flex items-center gap-3 font-semibold">
         {/* Button to switch to the "students" chart */}
         <button
           onClick={() => setCurrChart("students")}
-          className={`rounded-sm p-1 px-3 transition-all duration-200 ${
+          className={`rounded-md px-3 py-1 transition-all duration-200 text-sm md:text-base ${
             currChart === "students"
               ? "bg-richblack-700 text-yellow-50"
-              : "text-yellow-400"
+              : "text-yellow-400 hover:text-yellow-50"
           }`}
         >
           Students
@@ -65,22 +92,26 @@ export default function InstructorChart({ courses }) {
         {/* Button to switch to the "income" chart */}
         <button
           onClick={() => setCurrChart("income")}
-          className={`rounded-sm p-1 px-3 transition-all duration-200 ${
+          className={`rounded-md px-3 py-1 transition-all duration-200 text-sm md:text-base ${
             currChart === "income"
               ? "bg-richblack-700 text-yellow-50"
-              : "text-yellow-400"
+              : "text-yellow-400 hover:text-yellow-50"
           }`}
         >
           Income
         </button>
       </div>
-      <div className="relative mx-auto aspect-square h-full w-full">
-        {/* Render the Pie chart based on the selected chart */}
-        <Pie
-          data={currChart === "students" ? chartDataStudents : chartIncomeData}
-          options={options}
-        />
+      <div className="mx-auto w-full md:w-10/12 lg:w-3/4">
+        <div className="relative h-72 md:h-96">
+          {/* Render the Pie chart based on the selected chart */}
+          <Pie
+            data={
+              currChart === "students" ? chartDataStudents : chartIncomeData
+            }
+            options={options}
+          />
+        </div>
       </div>
     </div>
-  )
+  );
 }
