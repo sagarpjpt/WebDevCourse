@@ -302,6 +302,10 @@ exports.getCourseDetails = async (req, res) => {
         populate: { path: "subSection" },
       })
       .populate("category")
+      .populate({
+        path: "ratingAndReviews",
+        populate: { path: "user", select: "firstName lastName" }, 
+      })
       .exec();
 
     // return response

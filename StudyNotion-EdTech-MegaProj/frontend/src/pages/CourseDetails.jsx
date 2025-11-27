@@ -203,6 +203,7 @@ function CourseDetails() {
     whatYouWillLearn = "",
     courseContent = [],
     ratingAndReviews = [],
+    tag = [],
     instructor = { firstName: "", lastName: "", image: "" },
     studentsEnrolled = [],
     createdAt,
@@ -232,6 +233,20 @@ function CourseDetails() {
                 <p className="mt-3 text-richblack-200 leading-relaxed">
                   {courseDescription}
                 </p>
+
+                {/* TAGS */}
+                {tag.length > 0 && (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {tag.map((t, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 rounded-full text-sm bg-richblack-700 text-richblack-25 border border-richblack-600"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
 
                 <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
                   <span className="text-yellow-25 font-semibold">
@@ -317,6 +332,57 @@ function CourseDetails() {
                   </div>
                 </div>
               </div>
+
+              {/* TOP REVIEWS */}
+              {ratingAndReviews.length > 0 && (
+                <div className="mt-10">
+                  <h3 className="text-2xl font-semibold text-richblack-5 mb-4">Top Reviews</h3>
+
+                  <div className="space-y-4">
+                    {ratingAndReviews
+                      .slice(0, 3)                // Take top 2–3 reviews
+                      .sort((a, b) => b.rating - a.rating) // Highest rating first
+                      .map((rr) => (
+                        <div
+                          key={rr._id}
+                          className="p-4 rounded-xl border border-richblack-600 bg-richblack-700"
+                        >
+                          {/* User + Rating */}
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center text-richblack-900 font-bold">
+                                {rr.user.firstName.charAt(0).toUpperCase()}
+                              </div>
+                              <p className="text-richblack-5 font-medium">
+                                {rr.user.firstName} {rr.user.lastName}
+                              </p>
+                            </div>
+
+                            <p className="text-yellow-50 text-lg">
+                              {"★".repeat(rr.rating)}
+                              {"☆".repeat(5 - rr.rating)}
+                            </p>
+                          </div>
+
+                          {/* Review text */}
+                          <p className="text-richblack-25 text-sm">{rr.review}</p>
+                        </div>
+                      ))}
+                  </div>
+
+                  {/* SHOW ALL REVIEWS BUTTON */}
+                  {ratingAndReviews.length > 3 && (
+                    <button
+                      onClick={() => window.scrollTo({ top: 999999, behavior: "smooth" })}
+                      className="mt-5 px-4 py-2 text-sm bg-blue-200 text-richblack-900 rounded-lg shadow hover:bg-blue-300 transition"
+                    >
+                      Show All Reviews
+                    </button>
+                  )}
+                </div>
+              )}
+
+
             </div>
 
             {/* Right sidebar (sticky on lg) */}

@@ -148,7 +148,7 @@ exports.getAllRatingsAndReviews = async (req, res) => {
     try {
         // extract all ratings and reviews from db
         const ratingsAndReviews = await RatingAndReview.find().sort({rating: "desc"})
-            .populate("user", "name")
+            .populate("user", "firstName")
             .populate("course", "courseName");
 
         // return response

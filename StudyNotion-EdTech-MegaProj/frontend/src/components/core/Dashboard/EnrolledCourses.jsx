@@ -65,8 +65,8 @@ export default function EnrolledCourses() {
           </div>
 
           {enrolledCourses.map((course, i, arr) => {
-            const firstSection = course.courseContent?.[0];
-            const firstLecture = firstSection?.subSection?.[0];
+            const firstSection = course.courseContent?.[i];
+            const firstLecture = firstSection?.subSection?.[i];
 
             return (
               <div

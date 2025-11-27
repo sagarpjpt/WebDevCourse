@@ -48,7 +48,8 @@ export const contactusEndpoint = {
 
 export const ratingReview = {
     CREATE_RR: BASE_URL + '/api/v1/courses/create-rating-review',
-    GET_AVG_RR: BASE_URL + '/api/v1/courses/average-rating/' // courseid has to be added
+    GET_AVG_RR: BASE_URL + '/api/v1/courses/average-rating/', // courseid has to be added
+    GET_ALL_RR: BASE_URL + '/api/v1/courses/all-ratings-reviews'
 }
 
 export const payment = {
