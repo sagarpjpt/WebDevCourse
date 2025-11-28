@@ -25,6 +25,17 @@ exports.paymentSuccess = (amount, paymentId, orderId, name,lastname) => {
             }
     
             .logo {
+                display:inline-block;
+                padding:12px 24px;
+                background:#FFD60A;
+                color:#FFFFFF;
+                font-size:20px;
+                font-weight:700;
+                font-family:Arial, Helvetica, sans-serif;
+                text-decoration:none;
+                border-radius:8px;
+                letter-spacing:0.5px;
+                text-transform:none;
                 max-width: 200px;
                 margin-bottom: 20px;
             }
@@ -67,7 +78,9 @@ exports.paymentSuccess = (amount, paymentId, orderId, name,lastname) => {
     
     <body>
         <div class="container">
-            <a href=""><img class="logo" src="" alt="StudyNotion Logo"></a>
+            <a href="#" class="logo">
+                StudyNotion
+            </a>
             <div class="message">
             Your payment of ₹${amount} has been successfully received.
             </div>

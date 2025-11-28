@@ -33,6 +33,8 @@ import ViewCourse from "./pages/ViewCourse.jsx";
 import VideoDetails from "./components/core/ViewCourse/VideoDetails.jsx";
 import Catalog from "./pages/Catalog.jsx";
 import CourseDetails from "./pages/CourseDetails.jsx";
+import ForgotPassword from "./components/core/Auth/ForgotPassword.jsx";
+import ResetPassword from "./components/core/Auth/ResetPassword.jsx";
 
 const App = () => {
 
@@ -100,12 +102,16 @@ const App = () => {
             </VerifyEmailRoute>
           }
         />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/rateus" element={<Rateus />} />
         <Route path="/projects" element={<Project />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        {/* protected routes */}
         <Route
           element={
             <PrivateRoute>

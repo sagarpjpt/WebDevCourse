@@ -28,6 +28,17 @@ exports.resetPasswordTemplate = (resetUrl) => {
             }
     
             .logo {
+                display:inline-block;
+                padding:12px 24px;
+                background:#FFD60A;
+                color:#FFFFFF;
+                font-size:20px;
+                font-weight:700;
+                font-family:Arial, Helvetica, sans-serif;
+                text-decoration:none;
+                border-radius:8px;
+                letter-spacing:0.5px;
+                text-transform:none;
                 max-width: 200px;
                 margin-bottom: 20px;
             }
@@ -58,7 +69,9 @@ exports.resetPasswordTemplate = (resetUrl) => {
     
     <body>
         <div class="container">
-            <a href=""><img class="logo" src="" alt="StudyNotion Logo"></a>
+            <a href="#" class="logo">
+                StudyNotion
+            </a>
             <div class="message">Reset Your Password</div>
             <div class="body">
                 <p>Click the link below to reset your password. This link is valid for 1 hour.

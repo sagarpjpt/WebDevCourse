@@ -24,9 +24,20 @@ const otpTemplate = (otp) => {
 			}
 	
 			.logo {
+                display:inline-block;
+                padding:12px 24px;
+                background:#FFD60A;
+                color:#FFFFFF;
+                font-size:20px;
+                font-weight:700;
+                font-family:Arial, Helvetica, sans-serif;
+                text-decoration:none;
+                border-radius:8px;
+                letter-spacing:0.5px;
+                text-transform:none;
 				max-width: 200px;
-				margin-bottom: 20px;
-			}
+                margin-bottom: 20px;
+            }
 	
 			.message {
 				font-size: 18px;
@@ -66,7 +77,9 @@ const otpTemplate = (otp) => {
 	
 	<body>
 		<div class="container">
-			<a href=""><img class="logo" src="" alt="StudyNotion Logo"></a>
+			<a href="#" class="logo">
+                StudyNotion
+            </a>
 			<div class="message">OTP Verification Email</div>
 			<div class="body">
 				<p>Dear User,</p>

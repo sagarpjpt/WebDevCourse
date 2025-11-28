@@ -55,3 +55,8 @@ export const ratingReview = {
 export const payment = {
     CAPTURE: BASE_URL + '/api/v1/payments/capturepayment',
 }
+
+export const resetPassword = {
+    RESET_PASSWORD_TOKEN: BASE_URL + '/api/v1/auth/reset-password-token',
+    RESET_PASSWORD: BASE_URL + '/api/v1/auth/reset-password'
+}

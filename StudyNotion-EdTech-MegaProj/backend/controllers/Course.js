@@ -242,7 +242,6 @@ exports.editCourse = async (req, res) => {
   }
 };
 
-
 // get all courses
 exports.getAllCourses = async (req, res) => {
   try {
@@ -514,7 +513,6 @@ exports.getStudentEnrolledCourses = async (req, res) => {
 };
 
 // update course progress
-
 exports.getCourseProgress = async (req, res) => {
   try {
     const userId = req.user.userId;

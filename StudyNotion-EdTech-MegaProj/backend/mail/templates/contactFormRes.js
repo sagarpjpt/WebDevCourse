@@ -1,12 +1,12 @@
 exports.contactUsEmail = (
-    email,
-    firstname,
-    lastname,
-    message,
-    phoneNo,
-    countrycode
-  ) => {
-    return `<!DOCTYPE html>
+  email,
+  firstname,
+  lastname,
+  message,
+  phoneNo,
+  countrycode
+) => {
+  return `<!DOCTYPE html>
     <html>
     
     <head>
@@ -31,10 +31,6 @@ exports.contactUsEmail = (
                 text-align: center;
             }
     
-            .logo {
-                max-width: 200px;
-                margin-bottom: 20px;
-            }
     
             .message {
                 font-size: 18px;
@@ -68,14 +64,31 @@ exports.contactUsEmail = (
             .highlight {
                 font-weight: bold;
             }
+
+            .logo {
+                display:inline-block;
+                padding:12px 24px;
+                background:#FFD60A;
+                color:#FFFFFF;
+                font-size:20px;
+                font-weight:700;
+                font-family:Arial, Helvetica, sans-serif;
+                text-decoration:none;
+                border-radius:8px;
+                letter-spacing:0.5px;
+                text-transform:none;
+                max-width: 200px;
+                margin-bottom: 20px;
+            }
         </style>
     
     </head>
     
     <body>
         <div class="container">
-            <a href="https://studynotion-edtech-project.vercel.app"><img class="logo"
-                    src="https://i.ibb.co/7Xyj3PC/logo.png" alt="StudyNotion Logo"></a>
+            <a href="#" class="logo">
+                StudyNotion
+            </a>
             <div class="message">Contact Form Confirmation</div>
             <div class="body">
                 <p>Dear ${firstname} ${lastname},</p>
@@ -93,5 +106,5 @@ exports.contactUsEmail = (
         </div>
     </body>
     
-    </html>`
-  }
+    </html>`;
+};
