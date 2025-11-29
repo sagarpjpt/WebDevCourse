@@ -111,7 +111,7 @@ function LoginForm({ setLoading }) {
 
           {/* Forget Password */}
           <Link to="/forgot-password">
-            <p className="text-right text-[0.85rem] leading-[1.375rem] text-custom-text-2 mt-1 text-red-600 underline">
+            <p className="text-right text-[0.85rem] leading-[1.375rem] text-custom-text-2 mt-1 text-red-600 cursor-pointer hover:text-richblack-5 hover:underline transition-all duration-100">
               Forget Password?
             </p>
           </Link>

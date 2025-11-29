@@ -12,7 +12,7 @@ import { auth } from "./services/apis.js";
 import { logout, setUser } from "./redux/slices/profileSlice.jsx";
 import Spinner from "./components/common/Spinner.jsx";
 import PublicRoute from "./components/core/Auth/PublicRoute.jsx";
-import PrivateRoute from './components/core/Auth/PrivateRoute.jsx'
+import PrivateRoute from "./components/core/Auth/PrivateRoute.jsx";
 import VerifyEmailRoute from "./components/core/Auth/VerifyEmailRoute.jsx";
 import About from "./pages/About.jsx";
 import Rateus from "./pages/Rateus.jsx";
@@ -33,13 +33,12 @@ import ViewCourse from "./pages/ViewCourse.jsx";
 import VideoDetails from "./components/core/ViewCourse/VideoDetails.jsx";
 import Catalog from "./pages/Catalog.jsx";
 import CourseDetails from "./pages/CourseDetails.jsx";
-import ForgotPassword from "./components/core/Auth/ForgotPassword.jsx";
-import ResetPassword from "./components/core/Auth/ResetPassword.jsx";
+import ForgotPassword from "./pages/ForgotPassword.jsx";
+import ResetPassword from "./pages/ResetPassword.jsx";
 
 const App = () => {
-
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.profile)
+  const { user } = useSelector((state) => state.profile);
   const [authChecking, setAuthChecking] = useState(true);
   const [loading, setLoading] = useState(true);
 

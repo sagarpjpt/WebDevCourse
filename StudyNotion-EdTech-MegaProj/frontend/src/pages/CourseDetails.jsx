@@ -24,9 +24,9 @@ import { openRazorpayCheckout } from "../services/payment";
 
 
 function CourseDetails() {
-  const { user } = useSelector((state) => state.profile);
-  const { paymentLoading } = useSelector((state) => state.course || {});
-  const dispatch = useDispatch();
+  // const { user } = useSelector((state) => state.profile);
+  // const { paymentLoading } = useSelector((state) => state.course || {});
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // course id from route
@@ -60,7 +60,6 @@ function CourseDetails() {
           { signal: controller.signal }
         );
 
-        // backend returns: { success: true, course: { ... } }
         if (!cancelled && res?.data?.success) {
           setResponse(res.data.course || null);
         }
@@ -213,7 +212,7 @@ function CourseDetails() {
     <>
       <div className="relative w-full bg-richblack-800">
         {/* HERO */}
-        <div className="w-10/12 mx-auto px-4 lg:w-[1260px] 2xl:relative">
+        <div className="lg:w-10/12 mx-auto px-4 2xl:relative">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start py-8">
             {/* Left/Main column */}
             <div className="col-span-2">
@@ -385,8 +384,8 @@ function CourseDetails() {
 
             </div>
 
-            {/* Right sidebar (sticky on lg) */}
-            <aside className="col-span-1">
+            {/* right sidebar (sticky on lg) */}
+            <aside className="col-span-1 min-w-[350px] lg:w-[350px]">
               <div className="lg:sticky lg:top-24">
                 <CourseDetailsCard
                   course={response} // pass the course object directly
@@ -395,7 +394,7 @@ function CourseDetails() {
                 />
 
                 {/* small note under card */}
-                <div className="mt-4 text-sm text-richblack-400">
+                <div className="mt-4 text-sm text-richblack-400 text-center">
                   <p>Secure payment by your chosen gateway</p>
                 </div>
               </div>

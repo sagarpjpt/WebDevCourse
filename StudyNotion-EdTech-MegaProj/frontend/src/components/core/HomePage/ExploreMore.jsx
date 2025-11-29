@@ -36,26 +36,25 @@ const ExploreMore = () => {
       </p>
 
       <div className="w-full my-5 flex justify-center">
-        <div className="max-w-full overflow-x-auto px-4">
+        <div className="max-w-full overflow-x-scroll px-4 scrollbar-hide">
           <div className="inline-flex p-1 bg-richblack-700 rounded-full border-2 border-richblack-300 whitespace-nowrap">
-            {tabsName.map((element, index) => {
-              return (
-                <div
-                  key={index}
-                  className={`text-sm sm:text-[18px] text-center ${
-                    currentTab === element
-                      ? "bg-richblack-900 text-richblack-5 font-medium"
-                      : "text-richblack-200"
-                  } cursor-pointer rounded-full transition-all duration-200 hover:bg-richblack-900 hover:text-richblack-5 sm:px-7 px-4 py-2`}
-                  onClick={() => setMyCards(element)}
-                >
-                  {element}
-                </div>
-              );
-            })}
+            {tabsName.map((element, index) => (
+              <div
+                key={index}
+                className={`text-sm sm:text-[18px] text-center ${
+                  currentTab === element
+                    ? "bg-richblack-900 text-richblack-5 font-medium"
+                    : "text-richblack-200"
+                } cursor-pointer rounded-full transition-all duration-200 hover:bg-richblack-900 hover:text-richblack-5 sm:px-7 px-4 py-2`}
+                onClick={() => setMyCards(element)}
+              >
+                {element}
+              </div>
+            ))}
           </div>
         </div>
       </div>
+
       <div className="lg:h-[200px]"></div>
 
       {/* course card */}

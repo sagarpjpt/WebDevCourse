@@ -54,60 +54,63 @@ exports.getAllCategory = async (req, res) => {
 
 // category page details
 exports.categoryPageDetails = async (req, res) => {
-    try {
-        // fetch categoryId from url params
-        const {categoryId} = req.params;
+  try {
+    // fetch categoryId from url params
+    const { categoryId } = req.params;
 
-        // get course details based on categoryId
-        const categoryDetails = await Tag.findById(categoryId)
-            .populate({
-    path: "course",
-    populate: {
-      path: "instructor",
-      model: "User",   // replace if your instructor model name is different
-    },
-  }).exec();
+    // get course details based on categoryId
+    const categoryDetails = await Tag.findById(categoryId)
+      .populate({
+        path: "course",
+        match: { status: "Published"}, // only fetch published courses
+        populate: {
+          path: "instructor",
+          model: "User", // replace if your instructor model name is different
+        },
+      })
+      .exec();
 
-        // validate categoryDetails
-        if(!categoryDetails){
-            return res.status(404).json({
-                success: false,
-                message: "Category not found"
-            });
-        }
-
-        // get courses for different categories
-        const differentCategory = await Tag.find({_id: {$ne: categoryId}}) // fetch all categories except current category
-            .populate({
-    path: "course",
-    populate: {
-      path: "instructor",
-      model: "User",   // replace if your instructor model name is different
-    },
-  }).exec();
-
-        // get top selling courses
-        const courses = await Course.find({})
-            .sort({studentsEnrolled: -1}) // sort by number of students enrolled in descending order
-            .limit(10) // limit to top 10 courses
-            .populate("instructor").exec();
-
-        // return response
-        return res.status(200).json({
-            success: true,
-            message: "Category Page Details fetched successfully",
-            data: {
-                categoryDetails,
-                differentCategory,
-                topSellingCourses: courses
-            }
-        });
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: "Internal Server Error: " + error.message
-        });
+    // validate categoryDetails
+    if (!categoryDetails) {
+      return res.status(404).json({
+        success: false,
+        message: "Category not found",
+      });
     }
+
+    // get courses for different categories
+    const differentCategory = await Tag.find({ _id: { $ne: categoryId } }) // fetch all categories except current category
+      .populate({
+        path: "course",
+        match: { status: "Published"}, // only fetch published courses
+        populate: {
+          path: "instructor",
+          model: "User", // replace if your instructor model name is different
+        },
+      })
+      .exec();
+
+    // get top selling courses
+    const courses = await Course.find({ status: "Published" }) // only fetch published courses
+      .sort({ studentsEnrolled: -1 }) // sort by number of students enrolled in descending order
+      .limit(10) // limit to top 10 courses
+      .populate("instructor")
+      .exec();
+
+    // return response
+    return res.status(200).json({
+      success: true,
+      message: "Category Page Details fetched successfully",
+      data: {
+        categoryDetails,
+        differentCategory,
+        topSellingCourses: courses,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error: " + error.message,
+    });
+  }
 };
-
-

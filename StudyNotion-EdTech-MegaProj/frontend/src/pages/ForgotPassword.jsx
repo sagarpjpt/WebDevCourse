@@ -1,10 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import IconBtn from "../../common/IconBtn";
-import { apiConnector } from "../../../services/apiConnector";
-import { resetPassword } from "../../../services/apis";
+import IconBtn from "../components/common/IconBtn.jsx";
+import { apiConnector } from "../services/apiConnector.js";
+import { resetPassword } from "../services/apis";
 import { toast } from "react-hot-toast";
-import Spinner from "../../common/Spinner";
+import Spinner from "../components/common/Spinner";
 import { useNavigate } from "react-router-dom";
 
 

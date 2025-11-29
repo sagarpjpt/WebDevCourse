@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { set, useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { apiConnector } from "../../../services/apiConnector";
-import { resetPassword } from "../../../services/apis";
-import Spinner from "../../common/Spinner";
+import { apiConnector } from "../services/apiConnector";
+import { resetPassword } from "../services/apis";
+import Spinner from "../components/common/Spinner";
 import { useSearchParams } from "react-router-dom";
 
 export default function ResetPassword() {

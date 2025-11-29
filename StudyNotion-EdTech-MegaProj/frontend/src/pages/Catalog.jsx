@@ -9,7 +9,7 @@ import Error from "./Error";
 import Spinner from "../components/common/Spinner";
 
 const Catalog = () => {
-  const { catalogName } = useParams(); // e.g. "Web Development" (decoded)
+  const { catalogName } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [catalogPageData, setCatalogPageData] = useState(null);
@@ -64,12 +64,11 @@ const Catalog = () => {
           throw new Error(payload?.message || "Failed to fetch category details");
         }
 
-        // Backend shape (from your controller):
         // payload.data = { categoryDetails, differentCategory, topSellingCourses }
         const { categoryDetails, differentCategory, topSellingCourses } =
           payload.data || {};
 
-        // Normalize to frontend-friendly shape:
+        // frontend-friendly shape:
         const selectedCategory = categoryDetails
           ? {
               ...categoryDetails,
@@ -122,7 +121,6 @@ const Catalog = () => {
     };
   }, [categoryId]);
 
-  // UI: loading and error handling
   if (loading) return <Spinner />;
 
   if (error) return <Error />;
@@ -139,7 +137,7 @@ const Catalog = () => {
     <>
       {/* HERO */}
       <div className="bg-richblack-800 px-4 text-richblack-5">
-        <div className="w-10/12 mx-auto min-h-[220px] flex flex-col justify-center gap-4 py-8">
+        <div className="lg:w-10/12 mx-auto min-h-[220px] flex flex-col justify-center gap-4 py-8">
           <p className="text-sm text-richblack-300">
             Home / Catalog /{" "}
             <span className="text-yellow-25">{selected?.name || catalogName}</span>
@@ -157,7 +155,7 @@ const Catalog = () => {
       </div>
 
       {/* SECTION: Courses to get you started */}
-      <section className="w-10/12 mx-auto px-4 py-12 text-richblack-5">
+      <section className="w-11/12 lg:w-10/12 mx-auto px-4 py-12 text-richblack-5">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl sm:text-3xl font-semibold mb-0 text-richblack-5 border-l-4 border-yellow-50 pl-4">1. Courses to get you started</h2>
         </div>
@@ -168,7 +166,7 @@ const Catalog = () => {
       </section>
 
       {/* SECTION: Top courses in other categories */}
-      <section className="w-10/12 mx-auto px-4 py-12 text-richblack-5">
+      <section className="w-11/12 lg:w-10/12 mx-auto px-4 py-12 text-richblack-5">
         <div className="text-2xl sm:text-3xl font-semibold mb-0 text-richblack-5 border-l-4 border-yellow-50 pl-4">2. Top courses in other categories</div>
 
         <div className="mt-6">
@@ -179,7 +177,7 @@ const Catalog = () => {
       </section>
 
       {/* SECTION: Frequently Bought / Most Selling */}
-      <section className="w-10/12 mx-auto px-4 py-12 text-richblack-5">
+      <section className="w-11/12 lg:w-10/12 mx-auto px-4 py-12 text-richblack-5">
         <div className="text-2xl sm:text-3xl font-semibold mb-0 text-richblack-5 border-l-4 border-yellow-50 pl-4">3. Frequently Bought</div>
 
         <div className="py-8">

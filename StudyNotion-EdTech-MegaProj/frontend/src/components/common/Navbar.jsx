@@ -227,7 +227,7 @@ const Navbar = () => {
       {/* Mobile menu (slideover / dropdown) */}
       <div
         className={`md:hidden fixed inset-0 z-30 transition-transform duration-200 ${
-          mobileOpen ? "translate-y-0" : "-translate-y-full"
+          mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
         aria-hidden={!mobileOpen}
       >
@@ -238,7 +238,7 @@ const Navbar = () => {
         />
 
         {/* Panel */}
-        <div className="relative bg-richblack-900 text-richblack-25 w-full max-h-screen overflow-auto">
+        <div className="relative bg-richblack-900 text-richblack-25 max-h-[100vh] overflow-auto  scrollbar-hide">
           <div className="w-11/12 mx-auto py-6">
             {/* header inside mobile menu */}
             <div className="flex items-center justify-between mb-6">
