@@ -84,7 +84,7 @@ export default function ChangeProfilePicture({ user, setUser }) {
           <img
             src={previewSource || user?.image}
             alt={`profile-${user?.firstName}`}
-            className="aspect-square w-[90px] rounded-full object-cover 
+            className="aspect-square w-[75px] lg:w-[90px] rounded-full object-cover 
                  ring-2 ring-richblack-600 shadow-md"
           />
 
@@ -119,10 +119,10 @@ export default function ChangeProfilePicture({ user, setUser }) {
               <IconBtn
                 text={loading ? "Uploading..." : "Upload"}
                 onclick={handleFileUpload}
-                customClasses="hover:scale-95 transition-all duration-200"
+                customClasses="hover:scale-95 transition-all duration-200 !px-3 !py-2 text-sm"
               >
                 {!loading && (
-                  <FiUpload className="text-lg text-richblack-900" />
+                  <FiUpload className="text-sm lg:text-lg text-richblack-900" />
                 )}
               </IconBtn>
             </div>

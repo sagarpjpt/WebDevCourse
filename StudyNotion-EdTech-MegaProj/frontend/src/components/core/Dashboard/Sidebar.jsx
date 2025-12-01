@@ -45,7 +45,7 @@ export default function Sidebar() {
 
   return (
     <>
-      <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r border-r-richblack-700 bg-richblack-800 py-10 md:sticky md:top-0">
+      <div className="hidden md:flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r border-r-richblack-700 bg-richblack-800 py-10 md:sticky md:top-0">
         <div className="flex flex-col">
           {sidebarLinks.map((link) => {
             if (link.type && user?.role !== link.type) return null
