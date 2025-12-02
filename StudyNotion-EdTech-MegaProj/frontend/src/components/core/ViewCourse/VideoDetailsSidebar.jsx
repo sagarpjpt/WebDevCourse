@@ -39,7 +39,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
   return (
     <>
-      <div className="flex h-[calc(100vh-3.5rem)] w-[330px] max-w-[360px] flex-col border-r border-richblack-700 bg-richblack-800 shadow-[2px_0_8px_rgba(0,0,0,0.2)]">
+      <div className="flex h-[calc(100vh-3.5rem)] md:w-[330px] md:max-w-[360px] flex-col border-r border-richblack-700 bg-richblack-800 shadow-[2px_0_8px_rgba(0,0,0,0.2)]">
         {/* Header */}
         <div className="mx-5 flex flex-col gap-3 border-b border-richblack-600 py-6 text-richblack-25">
           <div className="flex w-full items-center justify-between">

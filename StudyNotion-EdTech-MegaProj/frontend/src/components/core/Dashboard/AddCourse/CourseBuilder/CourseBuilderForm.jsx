@@ -47,7 +47,6 @@ export default function CourseBuilderForm() {
 
         if (res?.data?.success) {
           toast.success(res.data.message || "Section updated successfully");
-          // backend likely returns updated section or course; your earlier createSection returns courseDetails
           // If controller returns courseDetails (like createSection), use that, otherwise patch locally:
           if (res.data.courseDetails) {
             dispatch(setCourse(res.data.courseDetails));
@@ -136,7 +135,7 @@ export default function CourseBuilderForm() {
   if (loading) return <Spinner />;
 
   return (
-    <div className="space-y-8 rounded-md border border-richblack-700 bg-richblack-800 p-6">
+    <div className="mb-8 space-y-8 rounded-md border border-richblack-700 bg-richblack-800 p-6">
       <p className="text-2xl font-semibold text-richblack-5">Course Builder</p>
 
       {/* ---------------- FORM ---------------- */}

@@ -4,7 +4,6 @@ import { RxCross2 } from "react-icons/rx";
 import { useSelector } from "react-redux";
 import Spinner from "../../common/Spinner";
 import { toast } from "react-hot-toast";
-// replaced external ReactStars with local star UI to avoid rendering issues
 import { apiConnector } from "../../../services/apiConnector";
 import { ratingReview } from "../../../services/apis";
 import { profile } from "../../../services/apis";

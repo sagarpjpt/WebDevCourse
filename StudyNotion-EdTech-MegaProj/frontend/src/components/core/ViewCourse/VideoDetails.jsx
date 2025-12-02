@@ -7,6 +7,7 @@ import { apiConnector } from "../../../services/apiConnector";
 import { course_sections } from "../../../services/apis";
 import IconBtn from "../../common/IconBtn";
 import { updateCompletedLectures } from "../../../redux/slices/viewCourseSlice";
+import { BsChevronDown } from "react-icons/bs";
 
 export default function VideoDetails() {
   const { courseId, sectionId, subSectionId } = useParams();
@@ -17,15 +18,17 @@ export default function VideoDetails() {
   const [videoData, setVideoData] = useState(null);
   const [videoEnded, setVideoEnded] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [activeSection, setActiveSection] = useState(null);
+  const toggleSection = (sectionId) => {
+    setActiveSection((prevSection) =>
+      prevSection === sectionId ? null : sectionId
+    );
+  };
 
   const { courseSectionData, courseEntireData, completedLectures } =
     useSelector((state) => state.viewCourse);
 
   const playerRef = useRef(null);
-  // console.log(playerRef?.current?.plyr) // prints null(idk why)
-  // console.log(playerRef?.current) // prints plyr 
-
-  // Poll until .plyr becomes non-null (then attach events)
   useEffect(() => {
     let interval = null;
     let attempts = 0;
@@ -98,7 +101,7 @@ export default function VideoDetails() {
 
     const lastSection = secIdx === courseSectionData.length - 1;
     const lastLecture =
-      subIdx === courseSectionData[secIdx].subSection.length - 1;
+      subIdx === courseSectionData[secIdx]?.subSection?.length - 1;
 
     return lastSection && lastLecture;
   };
@@ -211,17 +214,13 @@ export default function VideoDetails() {
     <div className="flex flex-col gap-5 text-white">
       {/* ------------------ VIDEO PLAYER ------------------ */}
       {videoData ? (
-        <div className="relative">
-          <Plyr
-            ref={playerRef}
-            source={plyrSource}
-            options={plyrOptions}
-            //onEnded={() => setVideoEnded(true)} //works only with <video></video>
-          />
+        <div className="relative w-full">
+          <Plyr ref={playerRef} source={plyrSource} options={plyrOptions} />
 
-          {/* ------------------ END OVERLAY ------------------ */}
+          {/* ------------------ END OVERLAY (RESTORED) ------------------ */}
           {videoEnded && (
             <div className="absolute inset-0 bg-black/70 backdrop-blur-sm grid place-content-center z-50">
+              {/* Mark as Completed */}
               {!completedLectures.includes(subSectionId) && (
                 <IconBtn
                   text={loading ? "Loading..." : "Mark as Completed"}
@@ -231,6 +230,7 @@ export default function VideoDetails() {
                 />
               )}
 
+              {/* Rewatch */}
               <IconBtn
                 text="Rewatch"
                 onclick={() => {
@@ -239,8 +239,8 @@ export default function VideoDetails() {
                 }}
                 customClasses="text-lg px-4 mb-3"
               />
-              
-              {/* prev next button */}
+
+              {/* Prev / Next */}
               <div className="flex gap-4 justify-center mt-3">
                 {!isFirstVideo() && (
                   <button className="blackButton" onClick={goToPrevVideo}>
@@ -266,8 +266,70 @@ export default function VideoDetails() {
       )}
 
       {/* ------------------ TITLE + DESCRIPTION ------------------ */}
-      <h1 className="text-3xl font-semibold">{videoData?.title}</h1>
-      <p className="text-richblack-300 pb-6">{videoData?.description}</p>
+      <h1 className="text-xl md:text-3xl font-semibold">{videoData?.title}</h1>
+
+      <p className="text-sm md:text-base text-richblack-300 pb-6">
+        {videoData?.description}
+      </p>
+
+      {/* ------------------ MOBILE SECTIONS ACCORDION ------------------ */}
+      <MobileSectionAccordion courseSectionData={courseSectionData} activeSection={activeSection} toggleSection={toggleSection} />
+
+      {/* ------------------ PREV / NEXT BUTTONS (ALWAYS VISIBLE) ------------------ */}
+      <div className="flex justify-between mt-4">
+        {!isFirstVideo() && (
+          <button className="blackButton" onClick={goToPrevVideo}>
+            Prev
+          </button>
+        )}
+        {!isLastVideo() && (
+          <button className="blackButton" onClick={goToNextVideo}>
+            Next
+          </button>
+        )}
+      </div>
     </div>
   );
+}
+
+const MobileSectionAccordion = ({courseSectionData, activeSection, toggleSection}) => {
+  return (
+    <div className="md:hidden">
+        {courseSectionData.map((section) => (
+          <div key={section._id}>
+            {/* Section Header */}
+            <button
+              className="w-full bg-richblack-700 p-3 text-left rounded-md flex justify-between items-center"
+              onClick={() => toggleSection(section._id)}
+            >
+              {section.sectionName}
+              <BsChevronDown
+                className={`transition-transform ${
+                  activeSection === section._id ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {/* Subsections */}
+            {activeSection === section._id && (
+              <div className="bg-richblack-800 mt-1 p-2 rounded-md">
+                {section.subSection.map((topic) => (
+                  <p
+                    key={topic._id}
+                    onClick={() =>
+                      navigate(
+                        `/view-course/${courseId}/section/${section._id}/sub-section/${topic._id}`
+                      )
+                    }
+                    className="text-sm p-2 rounded-md hover:bg-richblack-700"
+                  >
+                    {topic.title}
+                  </p>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+  )
 }

@@ -11,7 +11,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
 import { formatDate } from "../../../../utils/formatDate";
-import { toast } from 'react-hot-toast'
+import { toast } from "react-hot-toast";
 import { apiConnector } from "../../../../services/apiConnector";
 import { courses as courses_api } from "../../../../services/apis";
 import { getTotalCourseDuration } from "../../../../utils/getTotalCourseDuration";
@@ -75,7 +75,7 @@ export default function CoursesTable({ courses, setCourses }) {
         <Thead>
           <Tr className="flex gap-x-10 rounded-t-md border-b border-b-richblack-800 px-6 py-2">
             <Th className="flex-1 text-left text-sm font-medium uppercase text-richblack-100">
-              Courses
+              <div className="text-richblack-100">Course</div>
             </Th>
             <Th className="text-left text-sm font-medium uppercase text-richblack-100">
               Duration
@@ -102,13 +102,13 @@ export default function CoursesTable({ courses, setCourses }) {
                 key={course._id}
                 className="flex gap-x-10 border-b border-richblack-800 px-6 py-8"
               >
-                <Td className="flex flex-1 gap-x-4">
+                <Td className="flex flex-1 gap-x-4 items-center">
                   <img
                     src={course?.thumbnail}
                     alt={course?.courseName}
                     className="h-[148px] w-[220px] rounded-lg object-cover"
                   />
-                  <div className="flex flex-col justify-between">
+                  <div className="flex flex-col justify-between gap-2">
                     <p className="text-lg font-semibold text-richblack-5">
                       {course.courseName}
                     </p>
