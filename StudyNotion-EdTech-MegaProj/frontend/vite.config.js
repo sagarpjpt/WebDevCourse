@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
     tailwindcss()
     ],
     server: {
-      port: parseInt(env.VITE_PORT) || 5173, // ✅ Safe access
+      port: parseInt(env.VITE_PORT) || 5173, //  Safe access
     },
   }
 })
